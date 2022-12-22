@@ -1,0 +1,20 @@
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/views/
+      suffix: .jsp
+  datasource:
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    url: jdbc:sqlserver://localhost:1433;databaseName=Movies
+    username: sa
+    password: 1234$
+  jpa:
+    hibernate:
+      ddl-auto: none
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      properties:
+        dialect: org.hibernate.dialect.SQLServer2012Dialect
+        current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+    show-sql: true
