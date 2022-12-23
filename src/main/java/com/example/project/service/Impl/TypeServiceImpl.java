@@ -28,4 +28,9 @@ public class TypeServiceImpl implements TypeService {
     public Optional<Type> findById(Integer id) {
         return typeRepository.findById(id);
     }
+
+    @Override
+    public void deleteById(Integer id) {
+        typeRepository.deleteById(id);
+    }
 }

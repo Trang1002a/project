@@ -39,16 +39,16 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach items="${types}" var="type">
+					<c:forEach items="${view}" var="type">
 						<tr>
 							<td>${type.id}</td>
 							<td>${type.name}</td>
 							<td>
 								<c:choose>
-									<c:when test="${cat.status == 1}">
+									<c:when test="${type.status == true}">
 										<span class="label label-success">Hiện thị</span>
 									</c:when>
-									<c:when test="${cat.status == 0}">
+									<c:when test="${type.status == false}">
 										<span class="label label-danger">Ẩn</span>
 									</c:when>
 								</c:choose>
