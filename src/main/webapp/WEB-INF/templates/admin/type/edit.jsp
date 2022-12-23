@@ -31,16 +31,16 @@
 			<div class="row">
 				<div class="col-md-12">
 
-					<form:form action="insert" modelAttribute="type" method="post">
-
+					<form:form action="insert" modelAttribute="view" method="post">
+						<form:input path="id" cssClass="form-control" type="hidden" value="${view.id}"/>
 						<div class="form-group">
 							<label for="">Thể loại</label>
-							<form:input path="name" cssClass="form-control" />
+							<form:input path="name" cssClass="form-control" value="${view.name}"/>
 							<form:errors path="name" cssClass="erorr" />
 						</div>
 						<div class="form-group">
 							<label for="">Tên viết tắt</label>
-							<form:input path="short_name" cssClass="form-control" />
+							<form:input path="short_name" cssClass="form-control" value="${short_name}"/>
 							<form:errors path="short_name" cssClass="erorr" />
 						</div>
 
@@ -60,7 +60,7 @@
 							<form:errors path="status" cssClass="erorr" />
 						</div>
 
-						<button type="submit" class="btn btn-primary">Thêm mới</button>
+						<button type="submit" class="btn btn-primary">Chinh sua</button>
 					</form:form>
 
 				</div>

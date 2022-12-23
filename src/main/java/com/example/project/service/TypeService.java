@@ -9,4 +9,5 @@ public interface TypeService {
     List<Type> findAll();
     Type save(Type type);
     Optional<Type> findById(Integer id);
+    void deleteById(Integer id);
 }

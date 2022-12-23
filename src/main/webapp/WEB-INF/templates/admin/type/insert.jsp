@@ -31,11 +31,11 @@
 			<div class="row">
 				<div class="col-md-12">
 
-					<form:form action="insert" modelAttribute="type" method="post">
-					<form:input path="id" type="hidden" value="${type.id}"/>
+					<form:form action="insert" modelAttribute="view" method="post">
+					<form:input path="id" type="hidden" value="${view.id}"/>
 						<div class="form-group">
 							<label for="">Thể loại</label>
-							<form:input path="name" cssClass="form-control" value="${type.name}"/>
+							<form:input path="name" cssClass="form-control" value="${view.name}"/>
 							<form:errors path="name" cssClass="erorr" />
 						</div>
 						<div class="form-group">

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin")
 public class HomeController {
 
-    @GetMapping("")
+    @GetMapping(value = {"", "/index"})
     public String index(Model model) {
 //        List<Type> list = typeService.getList();
 //        model.addAttribute(Layout.VIEW, list);

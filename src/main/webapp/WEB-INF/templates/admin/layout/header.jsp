@@ -13,7 +13,7 @@
 	name="viewport">
 <!-- Bootstrap 3.3.7 -->
 <link rel="stylesheet"
-	href="<c:url value="" />">
+	href="<c:url value="/static/css/bootstrap.min.css" />">
 <link rel="stylesheet" href="<c:url value="/static/css/font-awesome.min.css" />">
 <link rel="stylesheet"
 	href="<c:url value="/static/css/AdminLTE.css" />">
@@ -31,7 +31,7 @@
 
 		<header class="main-header">
 			<!-- Logo -->
-			<a href="${pageContext.request.contextPath}/" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
+			<a href="${pageContext.request.contextPath}/admin/" class="logo"> <!-- mini logo for sidebar mini 50x50 pixels -->
 				<span class="logo-mini"><b>A</b>LT</span> <!-- logo for regular state and mobile devices -->
 				<span class="logo-lg"><b>Admin</b>LTE</span>
 			</a>
@@ -207,10 +207,10 @@
 					</a>
 						<ul class="treeview-menu">
 							<li><a
-								href="${pageContext.request.contextPath}/movies/insert"><i
+								href="${pageContext.request.contextPath}/admin/movies/insert"><i
 									class="fa fa-circle-o"></i> Thêm mới</a></li>
 							<li><a
-								href="${pageContext.request.contextPath}/movies/index"><i
+								href="${pageContext.request.contextPath}/admin/movies/index"><i
 									class="fa fa-circle-o"></i> Danh sách</a></li>
 						</ul></li>
 
@@ -222,10 +222,10 @@
 					</a>
 						<ul class="treeview-menu">
 							<li><a
-								href="${pageContext.request.contextPath}/format/insert"><i
+								href="${pageContext.request.contextPath}/admin/format/insert"><i
 									class="fa fa-circle-o"></i> Thêm mới</a></li>
 							<li><a
-								href="${pageContext.request.contextPath}/format/index"><i
+								href="${pageContext.request.contextPath}/admin/format/index"><i
 									class="fa fa-circle-o"></i> Danh sách</a></li>
 						</ul></li>
 					<li class="treeview"><a href="#"> <i
@@ -235,9 +235,9 @@
 						</span>
 					</a>
 						<ul class="treeview-menu">
-							<li><a href="${pageContext.request.contextPath}/type/insert"><i
+							<li><a href="${pageContext.request.contextPath}/admin/type/insert"><i
 									class="fa fa-circle-o"></i> Thêm mới</a></li>
-							<li><a href="${pageContext.request.contextPath}/type/index"><i
+							<li><a href="${pageContext.request.contextPath}/admin/type/index"><i
 									class="fa fa-circle-o"></i> Danh sách</a></li>
 						</ul></li>
 					<li class="treeview"><a href="#"> <i
@@ -248,10 +248,10 @@
 					</a>
 						<ul class="treeview-menu">
 							<li><a
-								href="${pageContext.request.contextPath}/country/insert"><i
+								href="${pageContext.request.contextPath}/admin/country/insert"><i
 									class="fa fa-circle-o"></i> Thêm mới</a></li>
 							<li><a
-								href="${pageContext.request.contextPath}/country/index"><i
+								href="${pageContext.request.contextPath}/admin/country/index"><i
 									class="fa fa-circle-o"></i> Danh sách</a></li>
 						</ul></li>
 
@@ -263,13 +263,13 @@
 					</a>
 						<ul class="treeview-menu">
 							<li><a
-								href="${pageContext.request.contextPath}/showtimes/insert"><i
+								href="${pageContext.request.contextPath}/admin/showtimes/insert"><i
 									class="fa fa-circle-o"></i> Tạo mới</a></li>
 							<li><a
-								href="${pageContext.request.contextPath}/showtimes/index"><i
+								href="${pageContext.request.contextPath}/admin/showtimes/index"><i
 									class="fa fa-circle-o"></i> Danh sách</a></li>
 							<li><a
-								href="${pageContext.request.contextPath}/showtimes/searchShowtimes.html"><i
+								href="${pageContext.request.contextPath}/admin/showtimes/searchShowtimes.html"><i
 									class="fa fa-circle-o"></i> Tìm kiếm</a></li>
 						</ul></li>
 					<li class="treeview"><a href="#"> <i
@@ -280,7 +280,7 @@
 					</a>
 						<ul class="treeview-menu">
 							<li><a
-								href="${pageContext.request.contextPath}/ticket/index"><i
+								href="${pageContext.request.contextPath}/admin/ticket/index"><i
 									class="fa fa-circle-o"></i> Danh sách</a></li>
 						</ul></li>
 					<li class="treeview"><a href="#"> <i
@@ -291,10 +291,10 @@
 					</a>
 						<ul class="treeview-menu">
 							<li><a
-								href="${pageContext.request.contextPath}/branch/insert"><i
+								href="${pageContext.request.contextPath}/admin/branch/insert"><i
 									class="fa fa-circle-o"></i> Thêm mới</a></li>
 							<li><a
-								href="${pageContext.request.contextPath}/branch/index"><i
+								href="${pageContext.request.contextPath}/admin/branch/index"><i
 									class="fa fa-circle-o"></i> Danh sách</a></li>
 						</ul></li>
 					<li class="treeview"><a href="#"> <i
@@ -305,9 +305,9 @@
 					</a>
 						<ul class="treeview-menu">
 							<li><a
-								href="${pageContext.request.contextPath}/hours/insert"><i
+								href="${pageContext.request.contextPath}/admin/hours/insert"><i
 									class="fa fa-circle-o"></i> Thêm mới</a></li>
-							<li><a href="${pageContext.request.contextPath}/hours/index"><i
+							<li><a href="${pageContext.request.contextPath}/admin/hours/index"><i
 									class="fa fa-circle-o"></i> Danh sách</a></li>
 						</ul></li>
 					<li class="treeview"><a href="#"> <i
@@ -317,9 +317,9 @@
 						</span>
 					</a>
 						<ul class="treeview-menu">
-							<li><a href="${pageContext.request.contextPath}/room/insert"><i
+							<li><a href="${pageContext.request.contextPath}/admin/room/insert"><i
 									class="fa fa-circle-o"></i> Thêm mới</a></li>
-							<li><a href="${pageContext.request.contextPath}/room/index"><i
+							<li><a href="${pageContext.request.contextPath}/admin/room/index"><i
 									class="fa fa-circle-o"></i> Danh sách</a></li>
 						</ul></li>
 					<li class="treeview"><a href="#"> <i
@@ -329,9 +329,9 @@
 						</span>
 					</a>
 						<ul class="treeview-menu">
-							<li><a href="${pageContext.request.contextPath}/user/insert"><i
+							<li><a href="${pageContext.request.contextPath}/admin/user/insert"><i
 									class="fa fa-circle-o"></i> Thêm mới</a></li>
-							<li><a href="${pageContext.request.contextPath}/user/index"><i
+							<li><a href="${pageContext.request.contextPath}/admin/user/index"><i
 									class="fa fa-circle-o"></i> Danh sách</a></li>
 						</ul></li>
 
