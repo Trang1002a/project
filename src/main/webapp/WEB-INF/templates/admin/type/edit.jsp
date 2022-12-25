@@ -60,7 +60,7 @@
 							<form:errors path="status" cssClass="erorr" />
 						</div>
 
-						<button type="submit" class="btn btn-primary">Chinh sua</button>
+						<button type="submit" class="btn btn-success">Cập nhật</button>
 					</form:form>
 
 				</div>

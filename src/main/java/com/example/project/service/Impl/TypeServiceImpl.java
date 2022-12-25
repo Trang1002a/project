@@ -4,6 +4,8 @@ import com.example.project.model.entity.Type;
 import com.example.project.repository.TypeRepository;
 import com.example.project.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +19,16 @@ public class TypeServiceImpl implements TypeService {
     @Override
     public List<Type> findAll() {
         return typeRepository.findAll();
+    }
+
+    @Override
+    public Page<Type> findAll(Pageable pageable) {
+        return typeRepository.findAll(pageable);
+    }
+
+    @Override
+    public Page<Type> findByNameContaining(String name, Pageable pageable) {
+        return typeRepository.findByNameContaining(name, pageable);
     }
 
     @Override

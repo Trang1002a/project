@@ -21,6 +21,8 @@ public class Format {
 	private int id;
 	@Column(name = "name")
 	private String name;
+	@Column(name = "short_name")
+	private String short_name;
 	@Column(name = "created_at")
 	private Date created_at;
 	@Column(name = "status")

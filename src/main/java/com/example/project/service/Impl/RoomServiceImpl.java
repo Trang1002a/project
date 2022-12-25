@@ -1,36 +1,52 @@
 package com.example.project.service.Impl;
 
+import com.example.project.model.entity.Room;
+import com.example.project.model.entity.Showtimes;
 import com.example.project.model.entity.Type;
+import com.example.project.repository.RoomRepository;
 import com.example.project.repository.TypeRepository;
+import com.example.project.service.RoomService;
 import com.example.project.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class RoomServiceImpl implements TypeService {
+public class RoomServiceImpl implements RoomService {
     @Autowired
-    private TypeRepository typeRepository;
+    private RoomRepository roomRepository;
 
     @Override
-    public List<Type> findAll() {
-        return typeRepository.findAll();
+    public List<Room> findAll() {
+        return roomRepository.findAll();
     }
 
     @Override
-    public Type save(Type type) {
-        return typeRepository.save(type);
+    public Page<Room> findAll(Pageable pageable) {
+        return roomRepository.findAll(pageable);
     }
 
     @Override
-    public Optional<Type> findById(Integer id) {
-        return typeRepository.findById(id);
+    public Page<Room> findByNameContaining(String name, Pageable pageable) {
+        return roomRepository.findByNameContaining(name, pageable);
+    }
+
+    @Override
+    public Room save(Room room) {
+        return roomRepository.save(room);
+    }
+
+    @Override
+    public Optional<Room> findById(Integer id) {
+        return roomRepository.findById(id);
     }
 
     @Override
     public void deleteById(Integer id) {
-        typeRepository.deleteById(id);
+        roomRepository.deleteById(id);
     }
 }

@@ -32,16 +32,13 @@
 				<div class="col-md-12">
 
 					<form:form action="insert" modelAttribute="view" method="post">
-					<form:input path="id" type="hidden" value="${view.id}"/>
 						<div class="form-group">
-							<label for="">Thể loại</label>
-							<form:input path="name" cssClass="form-control" value="${view.name}"/>
-							<form:errors path="name" cssClass="erorr" />
+							<label for="">Tên thể loại</label>
+							<form:input path="name" cssClass="form-control" placeholder="Tên thể loại"/>
 						</div>
 						<div class="form-group">
 							<label for="">Tên viết tắt</label>
-							<form:input path="short_name" cssClass="form-control" />
-							<form:errors path="short_name" cssClass="erorr" />
+							<form:input path="short_name" cssClass="form-control" placeholder="Tên viết tắt"/>
 						</div>
 
 						<div class="form-group">
@@ -55,12 +52,9 @@
 								<label> <form:radiobutton path="status" value="0" />Ẩn
 								</label>
 							</div>
-
-
-							<form:errors path="status" cssClass="erorr" />
 						</div>
 
-						<button type="submit" class="btn btn-primary">Thêm mới</button>
+						<button type="submit" class="btn btn-success">Thêm mới</button>
 					</form:form>
 
 				</div>

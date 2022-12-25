@@ -1,12 +1,15 @@
 package com.example.project.service.Impl;
 
 import com.example.project.model.entity.Hours;
+import com.example.project.model.entity.Movies;
 import com.example.project.model.entity.Type;
 import com.example.project.repository.HoursRepository;
 import com.example.project.repository.TypeRepository;
 import com.example.project.service.HoursService;
 import com.example.project.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +23,16 @@ public class HoursServiceImpl implements HoursService {
     @Override
     public List<Hours> findAll() {
         return hoursRepository.findAll();
+    }
+
+    @Override
+    public Page<Hours> findAll(Pageable pageable) {
+        return hoursRepository.findAll(pageable);
+    }
+
+    @Override
+    public Page<Hours> findByNameContaining(String name, Pageable pageable) {
+        return hoursRepository.findByNameContaining(name, pageable);
     }
 
     @Override

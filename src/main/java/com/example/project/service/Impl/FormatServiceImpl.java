@@ -1,12 +1,15 @@
 package com.example.project.service.Impl;
 
 import com.example.project.model.entity.Format;
+import com.example.project.model.entity.Hours;
 import com.example.project.model.entity.Type;
 import com.example.project.repository.FormatRepository;
 import com.example.project.repository.TypeRepository;
 import com.example.project.service.FormatService;
 import com.example.project.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,6 +23,16 @@ public class FormatServiceImpl implements FormatService {
     @Override
     public List<Format> findAll() {
         return formatRepository.findAll();
+    }
+
+    @Override
+    public Page<Format> findAll(Pageable pageable) {
+        return formatRepository.findAll(pageable);
+    }
+
+    @Override
+    public Page<Format> findByNameContaining(String name, Pageable pageable) {
+        return formatRepository.findByNameContaining(name, pageable);
     }
 
     @Override
