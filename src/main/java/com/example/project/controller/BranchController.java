@@ -1,8 +1,12 @@
 package com.example.project.controller;
 
+import com.example.project.model.dto.BranchDTO;
 import com.example.project.model.entity.Branch;
+import com.example.project.model.entity.Room;
 import com.example.project.service.Impl.BranchServiceImpl;
+import com.example.project.service.Impl.RoomServiceImpl;
 import com.example.project.util.Pages;
+import com.example.project.util.mapper.BranchMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -24,6 +28,12 @@ public class BranchController {
     @Autowired
     private BranchServiceImpl branchService;
 
+    @Autowired
+    private RoomServiceImpl roomService;
+
+    @Autowired
+    private final BranchMapper branchMapper = new BranchMapper();
+
     @GetMapping(value = {"", "/index"})
     public String index(Model model,
                         @RequestParam(value = "page", required = false, defaultValue = "1") int page,
@@ -37,7 +47,9 @@ public class BranchController {
             page_ = branchService.findByNameContaining(name, pageable);
         }
         List<Branch> list = page_.getContent();
-        model.addAttribute(Layout.VIEW, list);
+        List<Room> room = roomService.findAll();
+        List<BranchDTO> listBranch = branchMapper.mapListBranchDTO(list, room);
+        model.addAttribute(Layout.VIEW, listBranch);
         model.addAttribute(Layout.CURRENT_PAGE, page_.getNumber());
         model.addAttribute(Layout.TOTAL_ITEMS, page_.getTotalElements());
         model.addAttribute(Layout.TOTAL_PAGES, page_.getTotalPages());
@@ -48,17 +60,23 @@ public class BranchController {
     @GetMapping("/insert")
     public String insert(Model model) {
         Branch branch = new Branch();
-        model.addAttribute("view", branch);
+        List<Room> list = roomService.findAll();
+        model.addAttribute(Layout.ROOM, list);
+        model.addAttribute(Layout.VIEW, branch);
         return Pages.ADMIN_BRANCH_INSERT.uri();
     }
     @PostMapping("/insert")
     public String insert(Branch branch) {
+        String[] a = branch.getRoom_id().split(",");
+        branch.setTotal(String.valueOf(a.length));
         branchService.save(branch);
         return Pages.REDIRECT.uri() + Pages.ADMIN_BRANCH_INDEX.uri();
     }
     @GetMapping("/edit")
     public String edit(@PathParam("id") int id, Model model) {
         Branch branch = branchService.findById(id).get();
+        List<Room> list = roomService.findAll();
+        model.addAttribute(Layout.ROOM, list);
         model.addAttribute(Layout.VIEW, branch);
         return Pages.ADMIN_BRANCH_EDIT.uri();
     }

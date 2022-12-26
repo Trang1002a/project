@@ -17,10 +17,16 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
+    @Column(name = "name")
     private String name;
-    private Integer branch_id;
-    private Integer row;
-    private Integer col;
+    @Column(name = "row")
+    private String row;
+    @Column(name = "col")
+    private String col;
+    @Column(name = "total")
+    private String total;
+    @Column(name = "created_at")
     private Date created_at;
+    @Column(name = "status")
     private boolean status;
 }

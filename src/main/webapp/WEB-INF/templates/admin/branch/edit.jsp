@@ -14,7 +14,7 @@
     <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Thêm mới phim</h3>
+            <h3 class="box-title">Chỉnh sửa chi nhánh</h3>
 
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool"
@@ -32,48 +32,37 @@
                 <div class="col-md-12">
 
                     <form:form action="insert" modelAttribute="view" method="post">
+                        <form:input path="id" cssClass="form-control" type="hidden" value="${view.id}"/>
                         <div class="form-group">
-                            <label for="">Tên phim</label>
-                            <form:input path="name" cssClass="form-control" placeholder="Tên phim"/>
+                            <label for="">Tên chi nhánh</label>
+                            <form:input path="name" cssClass="form-control" placeholder="Tên chi nhánh"/>
                         </div>
                         <div class="form-group">
-                            <label for="">Thể loại</label>
-                            <form:select path="type_id" cssClass="form-control selectpicker" multiple="multiple">
-                                <form:options items="${type}" itemLabel="name" itemValue="id"/>
-                            </form:select>
+                            <label for="">Tên viết tắt</label>
+                            <form:input path="short_name" cssClass="form-control" placeholder="Tên viết tắt"/>
                         </div>
+
                         <div class="form-group">
-                            <label for="">Quốc gia</label>
-                            <form:select path="country_id" cssClass="form-control">
-                                <form:options items="${country}" itemLabel="name" itemValue="id"/>
-                            </form:select>
+                            <label for="">Số điện thoại</label>
+                            <form:input path="phone_number" cssClass="form-control" placeholder="Số điện thoại"/>
                         </div>
+
                         <div class="form-group">
-                            <label for="">Loại phim</label>
-                            <form:select path="format_id" cssClass="form-control">
-                                <form:options items="${format}" itemLabel="name" itemValue="id"/>
-                            </form:select>
+                            <label for="">Địa chỉ</label>
+                            <form:input path="address" cssClass="form-control" placeholder="Địa chỉ"/>
                         </div>
+
+                        <label for="">Phòng chiếu</label>
                         <div class="form-group">
-                            <label for="">Giá</label>
-                            <form:input path="price" cssClass="form-control" placeholder="Giá"/>
+                            <c:forEach items="${room}" var="r">
+                                <label>
+                                    <form:checkbox path="room_id" value="${r.id}"/>
+                                        ${r.name} - ${r.total} ghế
+                                </label>
+                                <br>
+                            </c:forEach>
                         </div>
-                        <div class="form-group">
-                            <label for="">Ảnh</label>
-                            <form:input path="image" cssClass="form-control" placeholder="Ảnh phim"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Diễn viên</label>
-                            <form:input path="performer" cssClass="form-control" placeholder="Diễn viên"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Thời lượng</label>
-                            <form:input path="time" cssClass="form-control" placeholder="Thời lượng"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Mô tả</label>
-                            <form:textarea path="description" cssClass="form-control" rows="3"/>
-                        </div>
+
                         <div class="form-group">
                             <label for="">Trạng thái</label>
                             <div class="radio">
@@ -87,7 +76,7 @@
                             </div>
                         </div>
 
-                        <button type="submit" class="btn btn-success">Thêm mới</button>
+                        <button type="submit" class="btn btn-success">Cập nhật</button>
                     </form:form>
 
                 </div>

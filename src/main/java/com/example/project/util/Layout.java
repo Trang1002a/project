@@ -6,6 +6,7 @@ public interface Layout {
     String TYPE = "type";
     String COUNTRY = "country";
     String FORMAT = "format";
+    String ROOM = "room";
     String CURRENT_PAGE = "currentPage";
     String TOTAL_ITEMS = "totalItems";
     String TOTAL_PAGES = "totalPages";

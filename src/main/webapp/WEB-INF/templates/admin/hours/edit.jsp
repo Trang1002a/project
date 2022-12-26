@@ -14,7 +14,7 @@
     <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Thêm mới phòng chiếu</h3>
+            <h3 class="box-title">Chỉnh sửa giờ chiếu</h3>
 
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool"
@@ -32,17 +32,11 @@
                 <div class="col-md-12">
 
                     <form:form action="insert" modelAttribute="view" method="post">
+                        <form:input path="id" cssClass="form-control" type="hidden" value="${view.id}"/>
                         <div class="form-group">
-                            <label for="">Tên phòng chiếu</label>
-                            <form:input path="name" cssClass="form-control" placeholder="Phòng chiếu"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Số hàng ghế</label>
-                            <form:input path="row" cssClass="form-control" placeholder="Số hàng ghế"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Số cột</label>
-                            <form:input path="col" cssClass="form-control" placeholder="Số cột"/>
+                            <label for="">Định dạng</label>
+                            <form:input path="name" cssClass="form-control" value="${view.name}"/>
+                            <form:errors path="name" cssClass="erorr" />
                         </div>
 
                         <div class="form-group">
@@ -56,9 +50,12 @@
                                 <label> <form:radiobutton path="status" value="0" />Ẩn
                                 </label>
                             </div>
+
+
+                            <form:errors path="status" cssClass="erorr" />
                         </div>
 
-                        <button type="submit" class="btn btn-success">Thêm mới</button>
+                        <button type="submit" class="btn btn-success">Cập nhật</button>
                     </form:form>
 
                 </div>

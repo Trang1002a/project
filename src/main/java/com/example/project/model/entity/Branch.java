@@ -19,12 +19,16 @@ public class Branch {
     private Integer id;
     @Column(name = "name")
     private String name;
-    @Column(name = "shortName")
-    private String shortName;
-    @Column(name = "phoneNumber")
-    private String phoneNumber;
+    @Column(name = "short_name")
+    private String short_name;
+    @Column(name = "phone_number")
+    private String phone_number;
     @Column(name = "address")
     private String address;
+    @Column(name = "room_id")
+    private String room_id;
+    @Column(name = "total")
+    private String total;
     @Column(name = "created_at")
     private Date created_at;
     @Column(name = "status")

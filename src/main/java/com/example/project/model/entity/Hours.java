@@ -17,7 +17,10 @@ public class Hours {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
+    @Column(name = "name")
     private String name;
+    @Column(name = "created_at")
     private Date created_at;
+    @Column(name = "status")
     private boolean status;
 }

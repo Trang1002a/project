@@ -53,6 +53,8 @@ public class RoomController {
     }
     @PostMapping("/insert")
     public String insert(Room room) {
+        Integer total = Integer.parseInt(room.getCol()) * Integer.parseInt(room.getRow());
+        room.setTotal(String.valueOf(total));
         roomService.save(room);
         return Pages.REDIRECT.uri() + Pages.ADMIN_ROOM_INDEX.uri();
     }
