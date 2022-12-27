@@ -1,7 +1,7 @@
 package com.example.project.controller;
 
-import com.example.project.model.entity.Showtimes;
-import com.example.project.service.Impl.ShowtimesServiceImpl;
+import com.example.project.model.entity.*;
+import com.example.project.service.Impl.*;
 import com.example.project.util.Pages;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +23,18 @@ import javax.websocket.server.PathParam;
 public class ShowtimesController {
     @Autowired
     private ShowtimesServiceImpl showtimesService;
+
+    @Autowired
+    private MoviesServiceImpl moviesService;
+
+    @Autowired
+    private BranchServiceImpl branchService;
+
+    @Autowired
+    private RoomServiceImpl roomService;
+
+    @Autowired
+    private HoursServiceImpl hoursService;
 
     @GetMapping(value = {"", "/index"})
     public String index(Model model,
@@ -48,7 +60,15 @@ public class ShowtimesController {
     @GetMapping("/insert")
     public String insert(Model model) {
         Showtimes showtimes = new Showtimes();
-        model.addAttribute("view", showtimes);
+        List<Movies> movies = moviesService.findAll();
+        List<Branch> branch = branchService.findAll();
+        List<Room> room = roomService.findAll();
+        List<Hours> hours = hoursService.findAll();
+        model.addAttribute(Layout.MOVIES, movies);
+        model.addAttribute(Layout.BRANCH, branch);
+        model.addAttribute(Layout.ROOM, room);
+        model.addAttribute(Layout.HOURS, hours);
+        model.addAttribute(Layout.VIEW, showtimes);
         return Pages.ADMIN_SHOWTIMES_INSERT.uri();
     }
     @PostMapping("/insert")

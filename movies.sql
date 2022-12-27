@@ -107,15 +107,16 @@ CREATE TABLE tbl_room
 CREATE TABLE tbl_showtimes
 (
     id int identity primary key,
-    movie_id int,
-    branch_id int,
+    name varchar(100),
+    movie_id varchar(100),
+    branch_id varchar(100),
+    room_id varchar(100),
+    hours_id varchar(100),
     movie_day Date,
-    time_slot_id varchar,
     created_at datetime default CURRENT_TIMESTAMP,
+    status bit default(1)
 )
-    INSERT INTO tbl_showtimes(movie_id, branch_id, movie_day, time_slot_id) VALUES
-(1, 1, '2022-12-14', '1')
-GO
+    GO
 CREATE TABLE tbl_request
 (
     id int identity primary key,

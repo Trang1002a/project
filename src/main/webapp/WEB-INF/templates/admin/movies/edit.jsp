@@ -7,6 +7,7 @@
     .erorr {
         color: red;
     }
+    .mr-5 { margin-right:3rem!important; }
 </style>
 <!-- Main content -->
 <section class="content">
@@ -14,7 +15,7 @@
     <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Sửa mới phim</h3>
+            <h3 class="box-title">Chỉnh sửa mới phim</h3>
 
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool"
@@ -29,51 +30,29 @@
         </div>
         <div class="box-body">
             <div class="row">
-                <div class="col-md-12">
-
-                    <form:form action="insert" modelAttribute="view" method="post">
-                        <form:input path="id" cssClass="form-control" type="hidden" value="${view.id}"/>
+                <form:form action="insert" modelAttribute="view" method="post">
+                    <form:input path="id" cssClass="form-control" type="hidden" value="${view.id}"/>
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="">Tên phim</label>
-                            <form:input path="name" cssClass="form-control" placeholder="Tên phim" value="${view.name}"/>
+                            <form:input path="name" cssClass="form-control" placeholder="Tên phim"/>
                         </div>
-                        <div class="form-group">
-                            <label for="">Thể loại</label>
-                            <form:select path="type_id" cssClass="form-control">
-                                <form:options items="${type}" itemLabel="name" itemValue="id"/>
-                            </form:select>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Quốc gia</label>
-                            <form:select path="country_id" cssClass="form-control">
-                                <form:options items="${country}" itemLabel="name" itemValue="id"/>
-                            </form:select>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Loại phim</label>
-                            <form:select path="format_id" cssClass="form-control">
-                                <form:options items="${format}" itemLabel="name" itemValue="id"/>
-                            </form:select>
-                        </div>
+
                         <div class="form-group">
                             <label for="">Giá</label>
-                            <form:input path="price" cssClass="form-control" placeholder="Giá" value="${view.price}"/>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Ảnh</label>
-                            <form:input path="image" cssClass="form-control" placeholder="Ảnh phim" value="${view.image}"/>
+                            <form:input path="price" cssClass="form-control" placeholder="Giá"/>
                         </div>
                         <div class="form-group">
                             <label for="">Diễn viên</label>
-                            <form:input path="performer" cssClass="form-control" placeholder="Diễn viên" value="${view.performer}"/>
+                            <form:input path="performer" cssClass="form-control" placeholder="Diễn viên"/>
                         </div>
                         <div class="form-group">
-                            <label for="">Thời lượng</label>
-                            <form:input path="time" cssClass="form-control" placeholder="Thời lượng" value="${view.time}"/>
+                            <label for="">Thời lượng (Phút)</label>
+                            <form:input path="time" type="number" cssClass="form-control" placeholder="Thời lượng"/>
                         </div>
                         <div class="form-group">
                             <label for="">Mô tả</label>
-                            <form:textarea path="description" cssClass="form-control" rows="3" value="${view.description}"/>
+                            <form:textarea path="description" cssClass="form-control" rows="3"/>
                         </div>
                         <div class="form-group">
                             <label for="">Trạng thái</label>
@@ -89,9 +68,49 @@
                         </div>
 
                         <button type="submit" class="btn btn-success">Cập nhật</button>
-                    </form:form>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Thể loại</label>
+                            <div class="form-group">
+                                <c:forEach items="${type}" var="r">
+                                    <label class="mr-5">
+                                        <form:checkbox path="type_id" value="${r.id}"/>
+                                            ${r.name}
+                                    </label>
+                                </c:forEach>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Quốc gia</label>
+                            <div class="form-group">
+                                <c:forEach items="${country}" var="r">
+                                    <label class="mr-5">
+                                        <form:checkbox path="country_id" value="${r.id}"/>
+                                            ${r.name}
+                                    </label>
+                                </c:forEach>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="">Loại phim</label>
+                            <div class="form-group">
+                                <c:forEach items="${format}" var="r">
+                                    <label class="mr-5">
+                                        <form:checkbox path="format_id" value="${r.id}"/>
+                                            ${r.name}
+                                    </label>
+                                </c:forEach>
+                            </div>
+                        </div>
 
-                </div>
+                        <div class="form-group">
+                            <label for="">Ảnh</label>
+                            <form:input path="image" cssClass="form-control" placeholder="Ảnh phim"/>
+                        </div>
+
+                    </div>
+                </form:form>
             </div>
         </div>
         <!-- /.box-body -->

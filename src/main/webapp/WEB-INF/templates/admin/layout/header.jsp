@@ -12,6 +12,7 @@
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
 <!-- Bootstrap 3.3.7 -->
+	<link rel="stylesheet" href="<c:url value="/static/css/style.css" />" />
 <link rel="stylesheet"
 	href="<c:url value="/static/css/bootstrap.min.css" />">
 <link rel="stylesheet" href="<c:url value="/static/css/font-awesome.min.css" />">
@@ -21,7 +22,6 @@
 	href="<c:url value="/static/css/_all-skins.min.css" />">
 <link rel="stylesheet"
 	href="<c:url value="/static/css/jquery-ui.css" />">
-<link rel="stylesheet" href="<c:url value="/static/css/style.css" />" />
 <script src="<c:url value="/static/js/angular.min.js"/>"></script>
 <script src="<c:url value="/static/js/app.js"/>"></script>
 </head>

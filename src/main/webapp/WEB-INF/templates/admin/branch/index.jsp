@@ -58,7 +58,7 @@
                         </c:choose>
                     </td>
                     <td>
-                        <a class="btn btn-small btn-danger" data-toggle="modal" href='#modal-id-detail-${v.id}'>Chi
+                        <a class="btn btn-small btn-warning" data-toggle="modal" href='#modal-id-detail-${v.id}'>Chi
                             tiết</a>
                         <a class="btn btn-small btn-success"
                            href="${pageContext.request.contextPath}/admin/branch/edit?id=${v.id}">Sửa</a>

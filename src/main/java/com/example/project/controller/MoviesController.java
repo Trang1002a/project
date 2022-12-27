@@ -1,14 +1,14 @@
 package com.example.project.controller;
 
-import com.example.project.model.entity.Country;
-import com.example.project.model.entity.Format;
-import com.example.project.model.entity.Movies;
-import com.example.project.model.entity.Type;
+import com.example.project.model.dto.BranchDTO;
+import com.example.project.model.dto.MoviesDTO;
+import com.example.project.model.entity.*;
 import com.example.project.service.Impl.CountryServiceImpl;
 import com.example.project.service.Impl.FormatServiceImpl;
 import com.example.project.service.Impl.MoviesServiceImpl;
 import com.example.project.service.Impl.TypeServiceImpl;
 import com.example.project.util.Pages;
+import com.example.project.util.mapper.MoviesMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -36,6 +36,8 @@ public class MoviesController {
     @Autowired
     private FormatServiceImpl formatService;
 
+    private final MoviesMapper moviesMapper = new MoviesMapper();
+
     @GetMapping(value = {"", "/index"})
     public String index(Model model,
                         @RequestParam(value = "page", required = false, defaultValue = "1") int page,
@@ -49,7 +51,11 @@ public class MoviesController {
             page_ = moviesService.findByNameContaining(name, pageable);
         }
         List<Movies> list = page_.getContent();
-        model.addAttribute(Layout.VIEW, list);
+        List<Type> types = typeService.findAll();
+        List<Format> formats = formatService.findAll();
+        List<Country> countries = countryService.findAll();
+        List<MoviesDTO> listMovies = moviesMapper.mapListMoviesDTO(list, types, formats, countries);
+        model.addAttribute(Layout.VIEW, listMovies);
         model.addAttribute(Layout.CURRENT_PAGE, page_.getNumber());
         model.addAttribute(Layout.TOTAL_ITEMS, page_.getTotalElements());
         model.addAttribute(Layout.TOTAL_PAGES, page_.getTotalPages());
