@@ -48,7 +48,7 @@
     <!-- Default box -->
     <div class="box">
         <div class="box-header with-border">
-            <h3 class="box-title">Thêm mới lịch chiếu</h3>
+            <h3 class="box-title">Sửa lịch chiếu</h3>
 
             <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool"
@@ -64,6 +64,7 @@
         <div class="box-body">
             <div class="row">
                 <form:form action="insert" modelAttribute="view" method="post">
+                    <form:input path="id" cssClass="form-control" type="hidden" value="${view.id}"/>
                     <div class="col-md-6">
                         <div class="form-group">
                             <label for="">Tên phim</label>
@@ -91,7 +92,7 @@
                                 </c:forEach>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-success">Thêm mới</button>
+                        <button type="submit" class="btn btn-success">Cập nhật</button>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">

@@ -1,102 +1,151 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ include file="../layout/header.jsp"%>
-<!-- Main content -->
-    <section class="content">
-
-      <!-- Default box -->
-      <div class="box">
-        <div class="box-header with-border">
-          <h3 class="box-title">Thêm mới phim</h3>
-
-          <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
-                    title="Collapse">
-              <i class="fa fa-minus"></i></button>
-            <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-              <i class="fa fa-times"></i></button>
-          </div>
-        </div>
-        <div class="box-body">
-          <div class="row">
-            <div class="col-md-12">
-                
-                
-                <form action="" method="POST" class="form-inline" role="form">
-                
-                  <div class="form-group">
-                    <label class="sr-only" for="">Tên phim</label>
-                    <input type="email" class="form-control" id="" placeholder="Tên phim">
-                  </div>
-
-                  <div class="form-group">
-                    <label class="sr-only" for="">Chi nhánh</label>
-                    <select name="" id="input" class="form-control" required="required">
-                      <option value="">BHD- Mỹ Đình</option>
-                      <option value="">BHD- Mỹ Đình 1</option>
-                  </select>
-                  </div>
-
-                  <div class="form-group">
-                    <label class="sr-only" for="">Quốc gia</label>
-                    <select name="" id="input" class="form-control" required="required">
-                      <option value="">Việt Nam</option>
-                      <option value="">Mỹ</option>
-                  </select>
-                  </div>
-                
-                  
-                
-                  <button type="submit" class="btn btn-primary">Tìm kiếm</button>
-                </form>
-                <br>
-                
-                <table class="table table-hover">
-                  <thead>
-                    <tr>
-                      <th>STT</th>
-                      <th>Tên phim</th>
-                      <th>Chi nhánh</th>
-                      <th>Ngày chiéu</th>
-                      <th>Giờ chiếu</th>
-                      <th>Giá vé</th>
-                      <th>Trạng thái</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td>1</td>
-                      <td>Avatar</td>
-                      <td>BHD- Mỹ Đình</td>
-                      <td>19/25/2022</td>
-                      <td>7:00</td>
-                      <td>
-                        150000đ
-                      </td>
-                      <td>Hiển thị</td>
-                      <td>
-                        
-                        <button type="button" class="btn btn-success">Sửa</button>
-                        <button type="button" class="btn btn-danger">Xóa</button>
-                        
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-                
-                
+         pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ include file="../layout/header.jsp" %>
+<div class="box">
+  <div class="box-header with-border">
+    <h3 class="box-title"></h3>
+    <form action="" method="get" class="form-inline"
+          role="form">
+      <div class="form-group">
+        <input id="content" type="text"
+               name="name" class="form-control" placeholder="Tìm kiếm ...">
+      </div>
+      <button type="submit" class="btn btn-primary">
+        <i class="fa fa-search" aria-hidden="true"></i>
+      </button>
+      <a href="${pageContext.request.contextPath}/admin/showtimes/insert"
+         class="btn btn-success btn-sm">Thêm mới</a>
+    </form>
+    <div class="box-tools pull-right">
+      <button type="button" class="btn btn-box-tool"
+              data-widget="collapse" data-toggle="tooltip" title="Collapse">
+        <i class="fa fa-minus"></i>
+      </button>
+      <button type="button" class="btn btn-box-tool" data-widget="remove"
+              data-toggle="tooltip" title="Remove">
+        <i class="fa fa-times"></i>
+      </button>
+    </div>
+  </div>
+  <div class="box-body">
+    <table class="table table-hover">
+      <thead>
+      <tr>
+        <th>STT</th>
+        <th>Tên phim</th>
+        <th>Ảnh phim</th>
+        <th>Chi nhánh</th>
+        <th>Ngày chiếu</th>
+        <th>Trạng thái</th>
+      </tr>
+      </thead>
+      <tbody>
+      <c:forEach items="${view}" var="v">
+        <tr>
+          <td>${v.id}</td>
+          <td>
+            <c:forEach items="${v.movies_id}" var="r">
+              ${r.name}
+            </c:forEach>
+          </td>
+          <td>
+            <c:forEach items="${v.movies_id}" var="r">
+              <img src="<c:url value="/static/images/${r.image}"/>"
+                      width="60px">
+            </c:forEach>
+          </td>
+          <td>
+            <c:forEach items="${v.branch_id}" var="r">
+              ${r.name}
+            </c:forEach>
+          </td>
+          <td>${v.movie_day}</td>
+          <td>
+            <c:choose>
+              <c:when test="${v.status == true}">
+                <span class="label label-success">Hiện thị</span>
+              </c:when>
+              <c:when test="${v.status == false}">
+                <span class="label label-danger">Ẩn</span>
+              </c:when>
+            </c:choose>
+          </td>
+          <td>
+            <a class="btn btn-small btn-warning" data-toggle="modal" href='#modal-id-detail-${v.id}'>Chi
+              tiết</a>
+            <a class="btn btn-small btn-success"
+               href="${pageContext.request.contextPath}/admin/showtimes/edit?id=${v.id}">Sửa</a>
+            <a class="btn btn-small btn-danger" data-toggle="modal" href='#modal-id-${v.id}'>Xóa</a>
+          </td>
+        </tr>
+        <div class="modal fade" id="modal-id-${v.id}">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button v="button" class="close" data-dismiss="modal" aria-hidden="true">&times;
+                </button>
+                <h4 class="modal-title">Bạn có chắc xóa: ${v.name}</h4>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                <a type="button"
+                   href="${pageContext.request.contextPath}/admin/showtimes/delete?id=${v.id}"
+                   class="btn btn-danger">Xóa</a>
+              </div>
             </div>
           </div>
         </div>
-        <!-- /.box-body -->
-        <div class="box-footer">
-          Footer
-        </div>
-        <!-- /.box-footer-->
-      </div>
-      <!-- /.box -->
+        <div class="modal fade" id="modal-id-detail-${v.id}">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button v="button" class="close" data-dismiss="modal" aria-hidden="true">&times;
+                </button>
+                <h4 class="modal-title">Chi tiết lịch chiếu: ${v.name}</h4>
+              </div>
+              <div class="modal-body">
+                <h4>Phòng chiếu</h4>
+                <c:forEach items="${v.room_id}" var="r">
+                  ${r.name},
+                </c:forEach>
 
-    </section>
-    <!-- /.content -->
-<%@ include file="../layout/footer.jsp"%>
+                <h4>Giờ chiếu</h4>
+                <c:forEach items="${v.hours_id}" var="r">
+                  ${r.name},
+                </c:forEach>
+
+<%--                <h4>Loại phim</h4>--%>
+<%--                <c:forEach items="${v.format}" var="r">--%>
+<%--                  ${r.name},--%>
+<%--                </c:forEach>--%>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+                <a type="button"
+                   href="${pageContext.request.contextPath}/admin/branch/delete?id=${v.id}"
+                   class="btn btn-danger">Xóa</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </c:forEach>
+      </tbody>
+    </table>
+  </div>
+  <!-- /.box-body -->
+  <!-- /.box-footer-->
+  <div class="box-footer text-center">
+    <nav aria-label="Page navigation ">
+      <ul class="pagination">
+        <c:forEach begin="1" end="${Math.ceil(totalItems/page)}" var="i">
+          <li class="page-item">
+            <a class="page-link" id="${i}"
+               href="${pageContext.request.contextPath}/admin/type?<c:if test="${name != ''}">name=${name}&</c:if>page=${i}">${i}</a>
+          </li>
+        </c:forEach>
+      </ul>
+    </nav>
+  </div>
+</div>
+<%@ include file="../layout/footer.jsp" %>

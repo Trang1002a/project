@@ -108,7 +108,7 @@ CREATE TABLE tbl_showtimes
 (
     id int identity primary key,
     name varchar(100),
-    movie_id varchar(100),
+    movies_id varchar(100),
     branch_id varchar(100),
     room_id varchar(100),
     hours_id varchar(100),

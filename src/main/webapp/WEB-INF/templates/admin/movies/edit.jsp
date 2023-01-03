@@ -30,7 +30,7 @@
         </div>
         <div class="box-body">
             <div class="row">
-                <form:form action="insert" modelAttribute="view" method="post">
+                <form:form action="insert" modelAttribute="view" method="post" enctype="multipart/form-data">
                     <form:input path="id" cssClass="form-control" type="hidden" value="${view.id}"/>
                     <div class="col-md-6">
                         <div class="form-group">
@@ -105,8 +105,9 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="">Ảnh</label>
-                            <form:input path="image" cssClass="form-control" placeholder="Ảnh phim"/>
+                            <label for="">Ảnh phim :</label>
+                            <input type="file" class="form-control" name="upload" id="upload" placeholder="Ảnh phim">
+                            <img src="" id="show_image" alt="" style="width: 300px">
                         </div>
 
                     </div>

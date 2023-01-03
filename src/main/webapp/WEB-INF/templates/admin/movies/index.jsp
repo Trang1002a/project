@@ -47,7 +47,11 @@
                 <tr>
                     <td>${v.id}</td>
                     <td>${v.name}</td>
-                    <td>${v.image}</td>
+                    <td>
+                        <img
+                            src="<c:url value="/static/images/${v.image}"/>"
+                            width="60px">
+                    </td>
 
                     <td>${v.price}</td>
                     <td>${v.time}</td>

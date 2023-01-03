@@ -30,7 +30,7 @@ public class Showtimes {
 	@Column(name = "hours_id")
 	private String hours_id;
 	@Column(name = "movie_day")
-	private Date movie_day;
+	private String movie_day;
 	@Column(name = "created_at")
 	private Date created_at;
 	@Column(name = "status")

@@ -13,15 +13,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import com.example.project.util.Layout;
-import java.util.List;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardOpenOption;
+import java.util.List;
+import java.util.Objects;
+
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.websocket.server.PathParam;
 
 @Controller
@@ -35,6 +42,8 @@ public class MoviesController {
     private CountryServiceImpl countryService;
     @Autowired
     private FormatServiceImpl formatService;
+    @Autowired
+    private ServletContext servletContext;
 
     private final MoviesMapper moviesMapper = new MoviesMapper();
 
@@ -76,10 +85,29 @@ public class MoviesController {
         return Pages.ADMIN_MOVIES_INSERT.uri();
     }
     @PostMapping("/insert")
-    public String insert(Movies movies) {
-        moviesService.save(movies);
-        return Pages.REDIRECT.uri() + Pages.ADMIN_MOVIES_INDEX.uri();
+    public String insert(@ModelAttribute("view") Movies movies, BindingResult bindingResult,
+                         @RequestParam("upload") MultipartFile file, Model model) throws IOException {
+        if (bindingResult.hasErrors()) {
+            model.addAttribute("view", movies);
+            return Pages.REDIRECT.uri() + Pages.ADMIN_MOVIES_INDEX.uri();
+        } else {
+            String fileName = servletContext.getRealPath("/") + "WEB-INF\\static\\images\\" + file.getOriginalFilename();
+            movies.setImage(file.getOriginalFilename());
+            try {
+                file.transferTo(new File(fileName));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Movies products = moviesService.save(movies);
+            if (!Objects.isNull(products)) {
+                return Pages.REDIRECT.uri() + Pages.ADMIN_MOVIES_INDEX.uri();
+            } else {
+                model.addAttribute("view", movies);
+                return Pages.REDIRECT.uri() + Pages.ADMIN_MOVIES_INDEX.uri();
+            }
+        }
     }
+
     @GetMapping("/edit")
     public String edit(@PathParam("id") int id, Model model) {
         Movies movies = moviesService.findById(id).get();
