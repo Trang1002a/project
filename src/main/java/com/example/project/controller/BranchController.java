@@ -59,16 +59,17 @@ public class BranchController {
     }
     @GetMapping("/insert")
     public String insert(Model model) {
-        Branch branch = new Branch();
-        List<Room> list = roomService.findAll();
-        model.addAttribute(Layout.ROOM, list);
+        BranchDTO branch = new BranchDTO();
+//        List<Room> list = roomService.findAll();
+//        model.addAttribute(Layout.ROOM, list);
         model.addAttribute(Layout.VIEW, branch);
         return Pages.ADMIN_BRANCH_INSERT.uri();
     }
     @PostMapping("/insert")
-    public String insert(Branch branch) {
-        String[] a = branch.getRoom_id().split(",");
-        branch.setTotal(String.valueOf(a.length));
+    public String insert(BranchDTO branchDto) {
+//        String[] a = branch.getRoom_id().split(",");
+//        branch.setTotal(String.valueOf(a.length));
+        Branch branch = branchMapper.mapToBranch(branchDto);
         branchService.save(branch);
         return Pages.REDIRECT.uri() + Pages.ADMIN_BRANCH_INDEX.uri();
     }

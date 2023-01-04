@@ -8,6 +8,31 @@
         color: red;
     }
 </style>
+<script>
+
+    var dem = 0;
+    function addRoom() {
+        dem++
+        var name = document.getElementById("room_name").value;
+        var row = document.getElementById("room_row").value;
+        var col = document.getElementById("room_col").value;
+        let rows = $("#newValue").html();
+        rows += '<p id="'+dem+'" name="room" value="111">' +
+            'Phòng <label name="room['+dem+'].name" value="'+name+'">' + name + '<label/>, '+ row + ' hàng, ' + col + ' cột   ' +
+            '<button type="button" class="btn btn-danger" onclick="deleteRoom('+dem+')"> - </button>' +
+            '</p> ';
+        $("#newValue").html(rows);
+    }
+
+    function deleteRoom(val) {
+        var x = '#'+val;
+        $(x).remove();
+        // var x = document.getElementById("branchChange").value;
+        // document.getElementById("newValue").innerHTML = "You selected: " + x;
+        // console.log(x);
+
+    }
+</script>
 <!-- Main content -->
 <section class="content">
 
@@ -29,9 +54,10 @@
         </div>
         <div class="box-body">
             <div class="row">
-                <div class="col-md-12">
 
-                    <form:form action="insert" modelAttribute="view" method="post">
+
+                <form:form action="insert" modelAttribute="view" method="post">
+                    <div class="col-md-6">
                         <div class="form-group">
                             <label for="">Tên chi nhánh</label>
                             <form:input path="name" cssClass="form-control" placeholder="Tên chi nhánh"/>
@@ -52,14 +78,8 @@
                         </div>
 
                         <label for="">Phòng chiếu</label>
-                        <div class="form-group">
-                            <c:forEach items="${room}" var="r">
-                                <label>
-                                    <form:checkbox path="room_id" value="${r.id}"/>
-                                        ${r.name} - ${r.total} ghế
-                                </label>
-                                <br>
-                            </c:forEach>
+                        <div class="form-group" id="newValue">
+                            <form:input path="room" value="{}"/>123
                         </div>
 
                         <div class="form-group">
@@ -76,9 +96,27 @@
                         </div>
 
                         <button type="submit" class="btn btn-success">Thêm mới</button>
-                    </form:form>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="">Tên phòng</label>
+                            <input type="text" id="room_name" class="form-control" value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Số hàng</label>
+                            <input type="text" id="room_row" class="form-control" value="">
+                        </div>
 
-                </div>
+                        <div class="form-group">
+                            <label for="">Số cột</label>
+                            <input type="text" id="room_col" class="form-control" value="">
+                        </div>
+
+                        <button type="button" class="btn btn-success" onclick="addRoom()">Thêm phòng</button>
+                    </div>
+                </form:form>
+
+
             </div>
         </div>
         <!-- /.box-body -->

@@ -45,4 +45,16 @@ public class BranchMapper {
         });
         return branchDTOList;
     }
+
+    public Branch mapToBranch(BranchDTO branchDTO){
+        Branch branch = new Branch();
+        branch.setId(branchDTO.getId());
+        branch.setName(branchDTO.getName());
+        branch.setPhone_number(branch.getPhone_number());
+        branch.setAddress(branch.getAddress());
+        branch.setShort_name(branch.getShort_name());
+        branch.setStatus(branch.isStatus());
+        branch.setCreated_at(branchDTO.getCreated_at());
+        return branch;
+    }
 }
