@@ -96,6 +96,7 @@ CREATE TABLE tbl_hours
 CREATE TABLE tbl_room
 (
     id int identity primary key,
+    branch_id int,
     name Nvarchar(100),
     col varchar(5),
     row varchar(5),

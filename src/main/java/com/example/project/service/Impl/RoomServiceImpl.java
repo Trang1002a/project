@@ -55,4 +55,16 @@ public class RoomServiceImpl implements RoomService {
         return roomRepository.findByIdIn(ids);
 
     }
+
+    @Override
+    public List<Room> saveAll(List<Room> rooms) {
+        return roomRepository.saveAll(rooms);
+    }
+
+    @Override
+    public List<Room> findByBranch_idIn(Integer branchId) {
+        return roomRepository.findByBranch_id(branchId);
+//        return null;
+    }
+
 }

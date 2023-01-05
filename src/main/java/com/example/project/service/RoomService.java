@@ -16,4 +16,6 @@ public interface RoomService {
     Optional<Room> findById(Integer id);
     void deleteById(Integer id);
     List<Room> findByIdIn(List<Integer> id);
+    List<Room> saveAll(List<Room> rooms);
+    List<Room> findByBranch_idIn(Integer branchId);
 }

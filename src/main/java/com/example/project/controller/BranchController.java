@@ -18,6 +18,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Page;
 import com.example.project.util.Layout;
+
+import java.util.Arrays;
 import java.util.List;
 
 import javax.websocket.server.PathParam;
@@ -70,14 +72,16 @@ public class BranchController {
 //        String[] a = branch.getRoom_id().split(",");
 //        branch.setTotal(String.valueOf(a.length));
         Branch branch = branchMapper.mapToBranch(branchDto);
-        branchService.save(branch);
+//        branchService.save(branch);
+//        List<Room> rooms = branchService.getListRoom(branch.getId(), branchDto.getRoom());
+//        roomService.saveAll(rooms);
         return Pages.REDIRECT.uri() + Pages.ADMIN_BRANCH_INDEX.uri();
     }
     @GetMapping("/edit")
     public String edit(@PathParam("id") int id, Model model) {
         Branch branch = branchService.findById(id).get();
-        List<Room> list = roomService.findAll();
-        model.addAttribute(Layout.ROOM, list);
+//        List<Room> list = roomService.findByBranch_idIn(branch.getId());
+//        model.addAttribute(Layout.ROOM, list);
         model.addAttribute(Layout.VIEW, branch);
         return Pages.ADMIN_BRANCH_EDIT.uri();
     }

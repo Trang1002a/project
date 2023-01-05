@@ -12,16 +12,19 @@
 
     var dem = 0;
     function addRoom() {
-        dem++
         var name = document.getElementById("room_name").value;
         var row = document.getElementById("room_row").value;
         var col = document.getElementById("room_col").value;
         let rows = $("#newValue").html();
-        rows += '<p id="'+dem+'" name="room" value="111">' +
-            'Phòng <label name="room['+dem+'].name" value="'+name+'">' + name + '<label/>, '+ row + ' hàng, ' + col + ' cột   ' +
+        rows += '<div id="'+dem+'">' +
+            '<input name="room['+dem+'].name" type="hidden" value="'+name+'" >' +
+            '<input name="room['+dem+'].col" type="hidden" value="'+col+'" >' +
+            '<input name="room['+dem+'].row" type="hidden" value="'+row+'" >' +
+            'Phòng <label>' + name + '<label/>, '+ row + ' hàng, ' + col + ' cột   ' +
             '<button type="button" class="btn btn-danger" onclick="deleteRoom('+dem+')"> - </button>' +
-            '</p> ';
+            '</div>';
         $("#newValue").html(rows);
+        dem++
     }
 
     function deleteRoom(val) {
@@ -79,7 +82,7 @@
 
                         <label for="">Phòng chiếu</label>
                         <div class="form-group" id="newValue">
-                            <form:input path="room" value="{}"/>123
+
                         </div>
 
                         <div class="form-group">
