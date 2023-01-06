@@ -24,7 +24,7 @@
         $.ajax({
             type: "GET",
             contentType: "application/json",
-            url: "json-data?room_id="+x,
+            url: "json-data?branch_id="+x,
             success: function (res) {
                 console.log(res.id);
                 console.log(res.name);

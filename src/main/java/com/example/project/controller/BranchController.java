@@ -49,8 +49,7 @@ public class BranchController {
             page_ = branchService.findByNameContaining(name, pageable);
         }
         List<Branch> list = page_.getContent();
-        List<Room> room = roomService.findAll();
-        List<BranchDTO> listBranch = branchMapper.mapListBranchDTO(list, room);
+        List<BranchDTO> listBranch = branchMapper.mapListBranchDTO(list);
         model.addAttribute(Layout.VIEW, listBranch);
         model.addAttribute(Layout.CURRENT_PAGE, page_.getNumber());
         model.addAttribute(Layout.TOTAL_ITEMS, page_.getTotalElements());
@@ -62,26 +61,19 @@ public class BranchController {
     @GetMapping("/insert")
     public String insert(Model model) {
         BranchDTO branch = new BranchDTO();
-//        List<Room> list = roomService.findAll();
-//        model.addAttribute(Layout.ROOM, list);
         model.addAttribute(Layout.VIEW, branch);
         return Pages.ADMIN_BRANCH_INSERT.uri();
     }
     @PostMapping("/insert")
     public String insert(BranchDTO branchDto) {
-//        String[] a = branch.getRoom_id().split(",");
-//        branch.setTotal(String.valueOf(a.length));
-        Branch branch = branchMapper.mapToBranch(branchDto);
-//        branchService.save(branch);
-//        List<Room> rooms = branchService.getListRoom(branch.getId(), branchDto.getRoom());
-//        roomService.saveAll(rooms);
+        branchMapper.mapToBranch(branchDto);
         return Pages.REDIRECT.uri() + Pages.ADMIN_BRANCH_INDEX.uri();
     }
     @GetMapping("/edit")
     public String edit(@PathParam("id") int id, Model model) {
         Branch branch = branchService.findById(id).get();
-//        List<Room> list = roomService.findByBranch_idIn(branch.getId());
-//        model.addAttribute(Layout.ROOM, list);
+        List<Room> list = roomService.findByBranch_idIn(branch.getId());
+        model.addAttribute(Layout.ROOM, list);
         model.addAttribute(Layout.VIEW, branch);
         return Pages.ADMIN_BRANCH_EDIT.uri();
     }

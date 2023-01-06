@@ -94,7 +94,7 @@ public class ShowtimesController {
         Showtimes showtimes = showtimesService.findById(id).get();
         List<Movies> movies = moviesService.findAll();
         List<Branch> branch = branchService.findAll();
-        List<Room> room = roomService.findAll();
+        List<Room> room = roomService.findByBranch_idIn(Integer.parseInt(showtimes.getBranch_id()));
         List<Hours> hours = hoursService.findAll();
         model.addAttribute(Layout.MOVIES, movies);
         model.addAttribute(Layout.BRANCH, branch);
@@ -110,11 +110,8 @@ public class ShowtimesController {
     }
     @GetMapping("/json-data")
     @ResponseBody
-    public ResponseEntity<?> getJson(@PathParam("room_id") int room_id) {
-        Optional<Branch> branch = branchService.findById(room_id);
-        List<String> room_id1 = Arrays.asList(branch.get().getRoom_id().split(","));
-        List<Integer> room_idd = room_id1.stream().map(Integer::parseInt).collect(Collectors.toList());
-        List<Room> room = roomService.findByIdIn(room_idd);
+    public ResponseEntity<?> getJson(@PathParam("branch_id") int branch_id) {
+        List<Room> room = roomService.findByBranch_idIn(branch_id);
         return new ResponseEntity<>(room, HttpStatus.OK);
     }
 }

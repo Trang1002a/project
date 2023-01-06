@@ -24,7 +24,7 @@
         $.ajax({
             type: "GET",
             contentType: "application/json",
-            url: "json-data?room_id="+x,
+            url: "json-data?branch_id="+x,
             success: function (res) {
                 console.log(res.id);
                 console.log(res.name);
@@ -83,12 +83,12 @@
                         <div class="form-group">
                             <label for="">Phòng chiếu</label>
                             <div class="form-group" id="newValue">
-                                <c:forEach items="${room}" var="r">
-                                    <label class="mr-5">
-                                        <form:checkbox path="room_id" value="${r.id}"/>
-                                            ${r.name}
-                                    </label>
-                                </c:forEach>
+<%--                                <c:forEach items="${room}" var="r">--%>
+<%--                                    <label class="mr-5">--%>
+<%--                                        <form:checkbox path="room_id" value="${r.id}"/>--%>
+<%--                                            ${r.name}--%>
+<%--                                    </label>--%>
+<%--                                </c:forEach>--%>
                             </div>
                         </div>
                         <button type="submit" class="btn btn-success">Thêm mới</button>

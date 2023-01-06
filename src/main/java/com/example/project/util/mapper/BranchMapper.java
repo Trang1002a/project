@@ -4,6 +4,7 @@ import com.example.project.model.dto.BranchDTO;
 import com.example.project.model.dto.RoomDTO;
 import com.example.project.model.entity.Branch;
 import com.example.project.model.entity.Room;
+import com.example.project.repository.RoomRepository;
 import com.example.project.service.Impl.BranchServiceImpl;
 import com.example.project.service.Impl.RoomServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,11 @@ public class BranchMapper {
     @Autowired
     private RoomServiceImpl roomService;
 
-    public List<BranchDTO> mapListBranchDTO(List<Branch> listBranch, List<Room> listRoom){
+    @Autowired
+    private RoomRepository roomRepository;
+
+    public List<BranchDTO> mapListBranchDTO(List<Branch> listBranch){
+        List<Room> listRoom = roomRepository.findAllByStatus(true);
         List<BranchDTO> branchDTOList = new ArrayList<>();
         listBranch.forEach(list ->{
             BranchDTO branchDTO = new BranchDTO();
@@ -84,15 +89,17 @@ public class BranchMapper {
         branch.setTotal(String.valueOf(roomDTOS.size()));
         branchService.save(branch);
 
+        roomRepository.updateStatusRoom(false, branchDTO.getId());
         List<Room> rooms = new ArrayList<>();
         roomDTOS.forEach(roomDTO -> {
             Room room = new Room();
+            room.setId(roomDTO.getId());
             room.setBranch_id(branch.getId());
             room.setName(roomDTO.getName());
             room.setCol(roomDTO.getCol());
             room.setRow(roomDTO.getRow());
             room.setTotal(String.valueOf(Integer.parseInt(roomDTO.getRow()) * Integer.parseInt(roomDTO.getCol())));
-            room.setStatus(roomDTO.isStatus());
+            room.setStatus(true);
             rooms.add(room);
         });
         roomService.saveAll(rooms);

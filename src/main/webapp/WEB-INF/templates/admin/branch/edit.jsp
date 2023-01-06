@@ -11,24 +11,25 @@
 <script>
 
     var dem = 0;
+
     function addRoom() {
         var name = document.getElementById("room_name").value;
         var row = document.getElementById("room_row").value;
         var col = document.getElementById("room_col").value;
         let rows = $("#newValue").html();
-        rows += '<div id="'+dem+'">' +
-            '<input name="room['+dem+'].name" type="hidden" value="'+name+'" >' +
-            '<input name="room['+dem+'].col" type="hidden" value="'+col+'" >' +
-            '<input name="room['+dem+'].row" type="hidden" value="'+row+'" >' +
-            'Phòng <label>' + name + '<label/>, '+ row + ' hàng, ' + col + ' cột   ' +
-            '<button type="button" class="btn btn-danger" onclick="deleteRoom('+dem+')"> - </button>' +
+        rows += '<div id="' + dem + '">' +
+            '<input name="room[' + dem + '].name" type="hidden" value="' + name + '" >' +
+            '<input name="room[' + dem + '].col" type="hidden" value="' + col + '" >' +
+            '<input name="room[' + dem + '].row" type="hidden" value="' + row + '" >' +
+            'Phòng <label>' + name + '<label/>, ' + row + ' hàng, ' + col + ' cột   ' +
+            '<button type="button" class="btn btn-danger" onclick="deleteRoom(' + dem + ')"> - </button>' +
             '</div>';
         $("#newValue").html(rows);
         dem++
     }
 
     function deleteRoom(val) {
-        var x = '#'+val;
+        var x = '#' + val;
         $(x).remove();
         // var x = document.getElementById("branchChange").value;
         // document.getElementById("newValue").innerHTML = "You selected: " + x;
@@ -84,11 +85,21 @@
                         <label for="">Phòng chiếu</label>
                         <div class="form-group" id="newValue">
                             <c:forEach items="${room}" var="r">
-                                <label>
-                                    <form:checkbox path="room_id" value="${r.id}"/>
-                                        ${r.name} - ${r.total} ghế
-                                </label>
-                                <br>
+
+                                <div id="${r.id}">
+                                    <input name="room[${r.id}].id" type="hidden" value="${r.id}">
+                                    <input name="room[${r.id}].name" type="hidden" value="${r.name}">
+                                    <input name="room[${r.id}].col" type="hidden" value="${r.col}">
+                                    <input name="room[${r.id}].row" type="hidden" value="${r.row}">
+                                    Phòng <label> ${r.name} <label/>, ${r.row} hàng, ${r.col} cột
+                                    <button type="button" class="btn btn-danger" onclick="deleteRoom(${r.id})"> -
+                                    </button>
+                                </div>
+
+                                <%--                                <label>--%>
+                                <%--                                    <form:checkbox path="room_id" value="${r.id}"/>--%>
+                                <%--                                        ${r.name} - ${r.total} ghế--%>
+                                <%--                                </label>--%>
                             </c:forEach>
                         </div>
 

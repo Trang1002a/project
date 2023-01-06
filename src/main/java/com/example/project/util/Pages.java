@@ -1,6 +1,9 @@
 package com.example.project.util;
 
 public enum Pages {
+    USER_HOME_INDEX("movie/index"),
+
+
     REDIRECT("redirect:/"),
     ADMIN_HOME_INDEX("admin/index"),
     ADMIN_TYPE_INDEX("admin/type/index"),
