@@ -51,6 +51,7 @@ public class SpringWebConfig implements WebMvcConfigurer, ApplicationContextAwar
         registry.addResourceHandler("/bower_components/**").addResourceLocations("/WEB-INF/static/bower_components/");
         registry.addResourceHandler("/static/**").addResourceLocations("/WEB-INF/static/");
         registry.addResourceHandler("/plugins/**").addResourceLocations("/WEB-INF/static/plugins/");
+        registry.addResourceHandler("/wp/**").addResourceLocations("/WEB-INF/wp/");
     }
 //    @Bean
 //    public SpringResourceTemplateResolver templateResolver() {

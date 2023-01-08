@@ -1,9 +1,6 @@
 package com.example.project.util;
 
 public enum Pages {
-    USER_HOME_INDEX("movie/index"),
-
-
     REDIRECT("redirect:/"),
     ADMIN_HOME_INDEX("admin/index"),
     ADMIN_TYPE_INDEX("admin/type/index"),
@@ -36,7 +33,12 @@ public enum Pages {
     ADMIN_HOURS_EDIT("admin/hours/edit"),
     ADMIN_ROOM_EDIT("admin/room/edit"),
     ADMIN_TICKET_EDIT("admin/ticket/edit"),
-    ADMIN_SHOWTIMES_EDIT("admin/showtimes/edit");
+    ADMIN_SHOWTIMES_EDIT("admin/showtimes/edit"),
+
+
+    //Movie
+    USER_HOME_INDEX("movie/index"),
+    MOVIE_DETAIL("movie/detail");
 
 
     private String uri;

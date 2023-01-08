@@ -11,8 +11,11 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Set;
 
 @Repository
 public interface BranchRepository extends JpaRepository<Branch, Integer> {
     Page<Branch> findByNameContaining(String name, Pageable pageable);
+
+    List<Branch> findByIdIn(List<Integer> branch_id);
 }
