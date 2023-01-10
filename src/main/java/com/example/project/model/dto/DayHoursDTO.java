@@ -1,5 +1,6 @@
 package com.example.project.model.dto;
 
+import com.example.project.model.entity.Hours;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,6 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @Builder
 public class DayHoursDTO {
+    private Integer id;
     private String movie_day;
-    private List<String> hours;
+    private List<Hours> hours;
 }

@@ -33,7 +33,7 @@
                     console.log(u.id);
                     console.log(u.name);
                     rows += '<label class="mr-5"></td>\n' +
-                        '<input name="room_id" type="checkbox" value="'+u.id+'">\n' +
+                        '<input name="room_id" type="radio" value="'+u.id+'">\n' +
                         u.name +
                         '</label>\n';
                 }

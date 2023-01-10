@@ -15,6 +15,7 @@ public interface Layout {
     String TOTAL_PAGES = "totalPages";
     String PAGE = "page";
     String NAME = "name";
+    String REQUEST = "req";
 
     String INSERT= "insert";
 }

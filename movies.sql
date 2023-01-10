@@ -118,15 +118,30 @@ CREATE TABLE tbl_showtimes
     status bit default(1)
 )
     GO
+-- CREATE TABLE tbl_request
+-- (
+--     id int identity primary key,
+--     movie_id int,
+--     branch_id int,
+--     movie_day Date,
+--     time_slot_id int,
+--     phoneNumber varchar(50),
+--     name varchar(100),
+--     created_at datetime default CURRENT_TIMESTAMP,
+--     status bit default(1)
+-- )
 CREATE TABLE tbl_request
 (
     id int identity primary key,
-    movie_id int,
-    branch_id int,
-    movie_day Date,
-    time_slot_id int,
+    movie varchar(200),
+    branch varchar(200),
+    room varchar(200),
+    hour_id varchar(200),
+    price varchar(200),
+    movie_day varchar(200),
+    slot varchar(200),
     phoneNumber varchar(50),
-    name varchar(100),
+    ticket_id varchar(100),
     created_at datetime default CURRENT_TIMESTAMP,
     status bit default(1)
 )

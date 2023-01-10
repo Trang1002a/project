@@ -18,7 +18,8 @@ import java.util.Optional;
 @Repository
 public interface RoomRepository extends JpaRepository<Room, Integer> {
     Page<Room> findByNameContaining(String name, Pageable pageable);
-    List<Room> findByIdIn(List<Integer> ids);
+    List<Room> findByIdInAndStatus(List<Integer> ids, boolean status);
+    Room findByIdAndStatus(Integer id, boolean status);
     List<Room> findAllByStatus(boolean status);
 //    List<Room> findByBranch_idIn(List<Integer> branchId);
     @Query("SELECT r FROM Room r WHERE r.branch_id = :branch_id and r.status = true")

@@ -160,105 +160,37 @@
                             <div class="showtime row">
                                 <div class="col-4">
                                     <div class="list-group" id="list-tab" role="tablist">
-                                        <c:forEach var="v" items="${view.branch}" >
-                                        <a class="list-group-item list-group-item-action active"
-                                           id="list-home-list" data-toggle="list" href="#list-home"
-                                           role="tab" aria-controls="home">${v.name}</a>
+                                        <c:forEach var="v" items="${view.branch}" varStatus="index">
+                                            <a class="list-group-item list-group-item-action <c:if test="${index.index == 0}">active</c:if>"
+                                               id="list-${v.branch_id}-list" data-toggle="list"
+                                               href="#list-${v.branch_id}"
+                                               role="tab" aria-controls="home">${v.branch_name}</a>
                                         </c:forEach>
-                                        <a class="list-group-item list-group-item-action"
-                                           id="list-profile-list" data-toggle="list"
-                                           href="#list-profile" role="tab"
-                                           aria-controls="profile">Profile</a>
-                                        <a class="list-group-item list-group-item-action"
-                                           id="list-messages-list" data-toggle="list"
-                                           href="#list-messages" role="tab"
-                                           aria-controls="messages">Messages</a>
-                                        <a class="list-group-item list-group-item-action"
-                                           id="list-settings-list" data-toggle="list"
-                                           href="#list-settings" role="tab"
-                                           aria-controls="settings">Settings</a>
                                     </div>
                                 </div>
 
                                 <div class="col-8">
                                     <div class="tab-content" id="nav-tabContent">
-                                        <div class="showtime-item single-cinema tab-pane fade show active"
-                                             id="list-home" role="tabpanel"
-                                             aria-labelledby="list-home-list">
-                                            <div class="st-item">
-                                                <div class="st-title"><label>April 6, 2022</label><a
-                                                        href="#" class="amy-buy-ticket"
-                                                        target="_blank">Buy Ticket</a>
-                                                </div>
-                                                <ul>
-                                                    <li>12h30</li>
-                                                    <li> 15h40</li>
-                                                    <li> 19h20</li>
-                                                </ul>
+                                        <c:forEach var="v" items="${view.branch}" varStatus="index">
+                                            <div class="showtime-item single-cinema tab-pane fade <c:if test="${index.index == 0}">show active</c:if>"
+                                                 id="list-${v.branch_id}" role="tabpanel"
+                                                 aria-labelledby="list-${v.branch_id}-list">
+                                                <c:forEach var="d" items="${v.day_hours}">
+                                                    <div class="st-item">
+                                                        <div class="st-title"><label>${d.movie_day}</label>
+                                                        </div>
+                                                        <ul>
+                                                            <c:forEach var="h" items="${d.hours}">
+                                                                <li style="background: none !important; padding: 0!important;">
+                                                                        <a style="margin-top: 0!important;" href="${pageContext.request.contextPath}/movie/bookTicket?id=${d.id}&&hour=${h.id}"
+                                                                       class="amy-buy-ticket"
+                                                                       target="_blank">${h.name}</a></li>
+                                                            </c:forEach>
+                                                        </ul>
+                                                    </div>
+                                                </c:forEach>
                                             </div>
-                                            <div class="st-item">
-                                                <div class="st-title"><label>April 13, 2022</label><a
-                                                        href="#" class="amy-buy-ticket"
-                                                        target="_blank">Buy Ticket</a>
-                                                </div>
-                                                <ul>
-                                                    <li>10h30</li>
-                                                    <li> 15h20</li>
-                                                    <li> 20h10</li>
-                                                    <li> 23h50</li>
-                                                </ul>
-                                            </div>
-                                            <div class="st-item">
-                                                <div class="st-title"><label>May 4, 2022</label><a
-                                                        href="#" class="amy-buy-ticket"
-                                                        target="_blank">Buy Ticket</a>
-                                                </div>
-                                                <ul>
-                                                    <li>09h20</li>
-                                                    <li> 13h10</li>
-                                                    <li> 17h20</li>
-                                                </ul>
-                                            </div>
-                                            <div class="st-item">
-                                                <div class="st-title"><label>May 6, 2022</label><a
-                                                        href="#" class="amy-buy-ticket"
-                                                        target="_blank">Buy Ticket</a>
-                                                </div>
-                                                <ul>
-                                                    <li>07h20</li>
-                                                    <li> 10h10. 15h30</li>
-                                                    <li> 21h00</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-
-                                        <div class="showtime-item single-cinema tab-pane fade"
-                                             id="list-profile" role="tabpanel"
-                                             aria-labelledby="list-profile-list">
-
-                                            <div class="st-item">
-                                                <div class="st-title"><label>May 4, 2022</label><a
-                                                        href="#" class="amy-buy-ticket"
-                                                        target="_blank">Buy Ticket</a>
-                                                </div>
-                                                <ul>
-                                                    <li>09h20</li>
-                                                    <li> 13h10</li>
-                                                    <li> 17h20</li>
-                                                </ul>
-                                            </div>
-                                            <div class="st-item">
-                                                <div class="st-title"><label>May 6, 2022</label><a
-                                                        href="#" class="amy-buy-ticket"
-                                                        target="_blank">Buy Ticket</a>
-                                                </div>
-                                                <ul>
-                                                    <li>07h20</li>
-                                                    <li> 10h10. 15h30</li>
-                                                    <li> 21h00</li>
-                                                </ul>
-                                            </div>
-                                        </div>
+                                        </c:forEach>
                                     </div>
                                 </div>
                             </div>

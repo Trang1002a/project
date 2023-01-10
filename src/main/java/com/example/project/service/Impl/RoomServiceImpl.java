@@ -52,7 +52,8 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public List<Room> findByIdIn(List<Integer> ids) {
-        return roomRepository.findByIdIn(ids);
+        return roomRepository.findByIdInAndStatus(ids, true
+        );
 
     }
 

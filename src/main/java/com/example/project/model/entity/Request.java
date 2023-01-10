@@ -17,13 +17,26 @@ public class Request {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
-    private Integer movie_id;
-    private Integer format_id;
-    private Integer type_id;
-    private float price;
-    private Date movie_day;
-    private Integer branch_id;
-    private Integer room_id;
-    private Integer hours_id;
+    @Column(name = "movie")
+    private String movie;
+    @Column(name = "branch")
+    private String branch;
+    @Column(name = "room")
+    private String room;
+    @Column(name = "hour_id")
+    private String hour_id;
+    @Column(name = "price")
+    private String price;
+    @Column(name = "movie_day")
+    private String movie_day;
+    @Column(name = "slot")
+    private String slot;
+    @Column(name = "phoneNumber")
+    private String phoneNumber;
+    @Column(name = "ticket_id")
+    private String ticket_id;
+    @Column(name = "created_at")
+    private Date created_at;
+    @Column(name = "status")
     private boolean status;
 }

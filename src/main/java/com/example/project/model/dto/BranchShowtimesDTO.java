@@ -15,5 +15,6 @@ import java.util.List;
 public class BranchShowtimesDTO {
     private Integer id;
     private Integer branch_id;
+    private String branch_name;
     private List<DayHoursDTO> day_hours;
 }
