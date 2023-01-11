@@ -20,4 +20,5 @@ public interface UserHomeService {
     MoviesDetailDTO getDetail(Integer id);
     BookTicketDTO getBookTicket(Integer id, String hour);
     Request saveRequest(Request request);
+    List<String> getSlot(String ticket_id);
 }

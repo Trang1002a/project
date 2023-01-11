@@ -134,23 +134,44 @@ public class UserHomeServiceImpl implements UserHomeService {
         bookTicketDTO.setPrice(priceMovie.get("price"));
         Room room = roomRepository.findByIdAndStatus(Integer.parseInt(showtimes.getRoom_id()), true);
         bookTicketDTO.setRooms_name(room.getName());
-        List<String> row = new ArrayList<>();
-        List<Integer> col = new ArrayList<>();
+        List<Map<String, String>> listSlot = new ArrayList<>();
+
+        String ticket_id = "#"+id+"-"+hour;
+        List<Request> list =  requestRepository.findAllByTicket_id(ticket_id, true);
+        List<String> slotAll = new ArrayList<>();
+        list.forEach(request -> {
+            List<String> slotA = Arrays.asList(request.getSlot().split(","));
+            slotAll.addAll(slotA);
+        });
+
         for(int i = 0; i<Integer.parseInt(room.getRow()); i++){
-            row.add(alpha[i]);
+            for(int j = 0; j<Integer.parseInt(room.getCol()); j++){
+                Map<String, String> stringMap = new HashMap<>();
+                String slot = alpha[i]+String.valueOf(j);
+                stringMap.put(slot, slotAll.contains(slot) ? "1" : "0");
+                listSlot.add(stringMap);
+            }
         }
-        for(int i = 0; i<Integer.parseInt(room.getCol()); i++){
-            col.add(i);
-        }
-        bookTicketDTO.setRow(row);
-        bookTicketDTO.setCol(col);
+        bookTicketDTO.setRow(Integer.parseInt(room.getRow()));
+        bookTicketDTO.setCol(Integer.parseInt(room.getCol()));
+        bookTicketDTO.setSlot(listSlot);
         bookTicketDTO.setTotal(Integer.parseInt(room.getTotal()));
         return bookTicketDTO;
     }
 
     @Override
     public Request saveRequest(Request request) {
+        List<String> slot = Arrays.asList(request.getSlot().split(","));
+        Integer total_price = Integer.parseInt(request.getPrice()) * slot.size();
+        request.setTotal_price(String.valueOf(total_price));
+        request.setStatus(true);
         return requestRepository.save(request);
+    }
+
+    @Override
+    public List<String> getSlot(String ticket_id) {
+
+        return null;
     }
 
     private String getType(String type_id) {

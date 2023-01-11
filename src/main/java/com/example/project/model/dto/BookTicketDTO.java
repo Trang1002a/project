@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Map;
 
 @Builder
 @Data
@@ -21,7 +22,8 @@ public class BookTicketDTO {
     private String movie_day;
     private String price;
     private String rooms_name;
-    private List<String> row;
-    private List<Integer> col;
+    private List<Map<String, String>> slot;
+    private Integer row;
+    private Integer col;
     private Integer total;
 }

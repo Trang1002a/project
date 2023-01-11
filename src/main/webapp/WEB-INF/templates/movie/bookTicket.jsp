@@ -66,76 +66,74 @@
                             </div>
                             <div class="showtime text-center">
                                 <form:form action="book" modelAttribute="req" method="post">
-                                <div>
-                                    <h3>Tên phim: <a href="">${view.name_movie}</a></h3>
-                                    <form:input path="movie" value="${view.name_movie}" />
-                                    <form:input path="ticket_id" value="#${view.id}-${view.hour_id}" />
-                                    <form:input path="room" value="${view.rooms_name}" />
-                                    <form:input path="movie_day" value="${view.movie_day}" />
-                                    <form:input path="branch" value="${view.branch_name}" />
-                                    <form:input path="price" value="${view.price}" />
-                                    <form:input path="hour_id" value="${view.hour_id}" />
+                                    <div>
+                                        <h3>Tên phim: <a href="">${view.name_movie}</a></h3>
+                                        <form:input path="movie" value="${view.name_movie}"/>
+                                        <form:input path="ticket_id" value="#${view.id}-${view.hour_id}"/>
+                                        <form:input path="room" value="${view.rooms_name}"/>
+                                        <form:input path="movie_day" value="${view.movie_day}"/>
+                                        <form:input path="branch" value="${view.branch_name}"/>
+                                        <form:input path="price" value="${view.price}"/>
+                                        <form:input path="hour_id" value="${view.hour_id}"/>
 
-                                    <p>Phòng chiếu: ${view.rooms_name} - ${view.total} ghế</p>
-                                    <p>Suất chiếu: ${view.hour} - Ngày chiếu: ${view.movie_day}</p>
-                                    <p>Chi nhánh: ${view.branch_name}</p>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <p>Để chọn ghế vui lòng chọn ghế ưa thích theo icon <br/>
-                                            Click tiếp vào ghế đã chọn để xoá lựa chọn</p>
-                                        <p>
-                                        <div class="checkbox">
-                                            <label class="">
-                                                <input type="checkbox" name="checkbox"
-                                                       class="checkboxRed" checked disabled/>
-                                                Ghế đã đặt
-                                            </label>
-
-                                            <label class="">
-                                                <input type="checkbox" name="checkbox" checked
-                                                       disabled/>
-                                                Ghế đã chọn
-                                            </label>
-                                        </div>
-                                        </p>
-
-                                        <c:forEach var="r" items="${view.row}">
-                                        <div>
-                                            <c:forEach var="c" items="${view.col}">
-                                            <label class="">
-                                                <input type="checkbox" name="slot"
-                                                       class="checkbox" value="${r}${c}" onchange="tick()"/>
-                                            </label>
-                                            </c:forEach>
-                                        </div>
-                                        </c:forEach>
-
-<%--                                        <div>--%>
-<%--                                            <label class="">--%>
-<%--                                                <input type="checkbox" name="checkbox"/>--%>
-<%--                                            </label>--%>
-<%--                                            <label class="">--%>
-<%--                                                <input type="checkbox" name="checkbox"--%>
-<%--                                                       class="checkboxRed" checked disabled/>--%>
-<%--                                            </label>--%>
-<%--                                        </div>--%>
-
+                                        <p>Phòng chiếu: ${view.rooms_name} - ${view.total} ghế</p>
+                                        <p>Suất chiếu: ${view.hour} - Ngày chiếu: ${view.movie_day}</p>
+                                        <p>Chi nhánh: ${view.branch_name}</p>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="entry-item">
-                                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg"
-                                                 alt="" width="200px">
-                                            <div>
-                                                <p>Ghế chọn mua: B1</p>
-                                                <p>Số lượng: 5</p>
-                                                <hr/>
-                                                <p>Tổng tiền: 20000000đ</p>
-                                                <a href="">Thanh toán</a>
+                                    <div class="row">
+                                        <div class="col-md-8">
+                                            <p>Để chọn ghế vui lòng chọn ghế ưa thích theo icon <br/>
+                                                Click tiếp vào ghế đã chọn để xoá lựa chọn</p>
+                                            <p>
+                                            <div class="checkbox">
+                                                <label class="">
+                                                    <input type="checkbox" name="checkbox"
+                                                           class="checkboxRed" checked disabled/>
+                                                    Ghế đã đặt
+                                                </label>
+
+                                                <label class="">
+                                                    <input type="checkbox" name="checkbox" checked
+                                                           disabled/>
+                                                    Ghế đã chọn
+                                                </label>
+                                            </div>
+
+                                            <c:forEach var="r" items="${view.slot}" varStatus="index">
+                                                <div>
+                                                    <label class="">
+                                                        <input type="checkbox" name="slot" class="checkbox"
+                                                               value="${r.key}" onchange="tick()"/>
+                                                    </label>
+                                                </div>
+                                                <c:if test="${index == col}"><br/></c:if>
+                                            </c:forEach>
+
+                                                <%--                                        <div>--%>
+                                                <%--                                            <label class="">--%>
+                                                <%--                                                <input type="checkbox" name="checkbox"/>--%>
+                                                <%--                                            </label>--%>
+                                                <%--                                            <label class="">--%>
+                                                <%--                                                <input type="checkbox" name="checkbox"--%>
+                                                <%--                                                       class="checkboxRed" checked disabled/>--%>
+                                                <%--                                            </label>--%>
+                                                <%--                                        </div>--%>
+
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="entry-item">
+                                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg"
+                                                     alt="" width="200px">
+                                                <div>
+                                                    <p>Ghế chọn mua: B1</p>
+                                                    <p>Số lượng: 5</p>
+                                                    <hr/>
+                                                    <p>Tổng tiền: 20000000đ</p>
+                                                    <a href="">Thanh toán</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                                     <button type="submit" class="btn btn-success">Đặt vé</button>
                                 </form:form>
                             </div>

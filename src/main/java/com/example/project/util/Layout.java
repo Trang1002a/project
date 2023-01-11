@@ -16,6 +16,6 @@ public interface Layout {
     String PAGE = "page";
     String NAME = "name";
     String REQUEST = "req";
-
+    String SLOT = "slot";
     String INSERT= "insert";
 }

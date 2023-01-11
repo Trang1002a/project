@@ -27,6 +27,8 @@ public class Request {
     private String hour_id;
     @Column(name = "price")
     private String price;
+    @Column(name = "total_price")
+    private String total_price;
     @Column(name = "movie_day")
     private String movie_day;
     @Column(name = "slot")
