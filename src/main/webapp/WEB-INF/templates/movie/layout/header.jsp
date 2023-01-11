@@ -487,7 +487,7 @@
             <div class="amy-inner">
                 <div class="amy-left">
                     <div id="amy-site-logo">
-                        <a href="index.html">
+                        <a href="${pageContext.request.contextPath}/movie">
                             <img src="<c:url value="/wp/wp-content/uploads/sites/2/2022/05/img_66.png" />"
                                  alt="Elementor Single Cinema"/>
                         </a>

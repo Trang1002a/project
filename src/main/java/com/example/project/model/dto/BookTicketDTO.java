@@ -22,7 +22,7 @@ public class BookTicketDTO {
     private String movie_day;
     private String price;
     private String rooms_name;
-    private List<Map<String, String>> slot;
+    private List<SlotDTO> slot;
     private Integer row;
     private Integer col;
     private Integer total;

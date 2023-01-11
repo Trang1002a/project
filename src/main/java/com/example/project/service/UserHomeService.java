@@ -21,4 +21,5 @@ public interface UserHomeService {
     BookTicketDTO getBookTicket(Integer id, String hour);
     Request saveRequest(Request request);
     List<String> getSlot(String ticket_id);
+    List<Request> search(String phone_number, String ticked_id);
 }

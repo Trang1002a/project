@@ -39,7 +39,9 @@ public enum Pages {
     //Movie
     USER_HOME_INDEX("movie/index"),
     MOVIE_DETAIL("movie/detail"),
-    MOVIE_BOOK_TICKET("movie/bookTicket");
+    MOVIE_SEARCH("movie/search"),
+    MOVIE_BOOK_TICKET("movie/bookTicket"),
+    MOVIE_BOOK_SUCCESS("movie/bookSuccess");
 
 
     private String uri;

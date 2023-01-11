@@ -228,7 +228,7 @@
                                 <div class="col-md-15 grid-item">
                                     <article class="entry-item" onclick="">
                                         <div class="entry-thumb">
-                                            <img class="" src="<c:url value="/wp/wp-content/uploads/sites/2/2022/05/img_20-360x618_c.jpg" />"
+                                            <img class="" src="<c:url value="/static/images/${v.image}"/>"
                                                  alt="Kubo and the Two Strings" />
                                             <div class="right-info">
                                                 <span class="pg">

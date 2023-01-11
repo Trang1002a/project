@@ -6,6 +6,7 @@ import com.example.project.repository.*;
 import com.example.project.service.UserHomeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -134,7 +135,7 @@ public class UserHomeServiceImpl implements UserHomeService {
         bookTicketDTO.setPrice(priceMovie.get("price"));
         Room room = roomRepository.findByIdAndStatus(Integer.parseInt(showtimes.getRoom_id()), true);
         bookTicketDTO.setRooms_name(room.getName());
-        List<Map<String, String>> listSlot = new ArrayList<>();
+        List<SlotDTO> listSlot = new ArrayList<>();
 
         String ticket_id = "#"+id+"-"+hour;
         List<Request> list =  requestRepository.findAllByTicket_id(ticket_id, true);
@@ -146,10 +147,11 @@ public class UserHomeServiceImpl implements UserHomeService {
 
         for(int i = 0; i<Integer.parseInt(room.getRow()); i++){
             for(int j = 0; j<Integer.parseInt(room.getCol()); j++){
-                Map<String, String> stringMap = new HashMap<>();
+                SlotDTO slotDTO = new SlotDTO();
                 String slot = alpha[i]+String.valueOf(j);
-                stringMap.put(slot, slotAll.contains(slot) ? "1" : "0");
-                listSlot.add(stringMap);
+                slotDTO.setName(slot);
+                slotDTO.setCheck(slotAll.contains(slot));
+                listSlot.add(slotDTO);
             }
         }
         bookTicketDTO.setRow(Integer.parseInt(room.getRow()));
@@ -172,6 +174,16 @@ public class UserHomeServiceImpl implements UserHomeService {
     public List<String> getSlot(String ticket_id) {
 
         return null;
+    }
+
+    @Override
+    public List<Request> search(String phone_number, String ticked_id) {
+        if (!StringUtils.isEmpty(phone_number) && !StringUtils.isEmpty(ticked_id)){
+            List<Request> list = requestRepository.findByIdInAndPhoneNumberIn(Integer.parseInt(ticked_id), phone_number);
+            return list;
+        }
+        return new ArrayList<>();
+
     }
 
     private String getType(String type_id) {

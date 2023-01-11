@@ -9,11 +9,15 @@ import com.example.project.service.Impl.UserHomeServiceImpl;
 import com.example.project.util.Layout;
 import com.example.project.util.Pages;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.websocket.server.PathParam;
 import java.util.List;
@@ -52,8 +56,18 @@ public class UserHomeController {
     }
 
     @PostMapping("/book")
-    public String insert(Request request) {
+    public String insert(Request request, Model model) {
         Request req = userHomeService.saveRequest(request);
-        return Pages.REDIRECT.uri() + Pages.ADMIN_HOURS_INDEX.uri();
+        model.addAttribute(Layout.VIEW, req);
+        return Pages.MOVIE_BOOK_SUCCESS.uri();
+    }
+
+    @GetMapping(value = { "/search"})
+    public String search(Model model,
+                         @RequestParam(value = "phone_number", required = false, defaultValue = "") String phone_number,
+                         @RequestParam(value = "ticket_id", required = false, defaultValue = "") String ticket_id) {
+        List<Request> list = userHomeService.search(phone_number, ticket_id);
+        model.addAttribute(Layout.VIEW, list);
+        return Pages.MOVIE_SEARCH.uri();
     }
 }

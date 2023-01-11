@@ -22,7 +22,7 @@
                             <div class="col-md-4 col-sm-4">
                                 <div class="entry-thumb">
                                     <img class=""
-                                         src="<c:url value="/wp/wp-content/uploads/sites/2/2022/05/img_20-360x618_c.jpg" />"
+                                         src="<c:url value="/static/images/${view.movies.image}"/>"
                                          alt="Kubo and the Two Strings"/>
                                 </div>
                             </div>
@@ -31,7 +31,7 @@
                                     <h1 class="entry-title p-name" itemprop="name headline">
                                         <a href="index.html" rel="bookmark" class="u-url url"
                                            itemprop="url">
-                                            Kubo and the Two Strings </a>
+                                            ${view.movies.name} </a>
                                     </h1>
 
 
@@ -40,58 +40,43 @@
 
                                         <span class="duration">
                                             <i class="fa fa-clock-o"></i>
-                                            02 hours 00 minutes </span>
+                                            ${view.movies.time} minutes</span>
                                     </div>
 
                                     <ul class="info-list">
                                         <li>
                                             <label>
-                                                Actor:
+                                                Type:
                                             </label>
                                             <span>
-                                                <a href="../../actor/alexander-cattly/index.html">Alexander
-                                                    Cattly</a>, <a
-                                                    href="../../actor/cartin-hollia/index.html">Cartin
-                                                    Hollia</a>, <a
-                                                    href="../../actor/greta-garbo/index.html">Greta
-                                                    Garbo</a> </span>
+                                                <a href="../../actor/alexander-cattly/index.html">${view.movies.type_id}</a></span>
                                         </li>
 
                                         <li>
                                             <label>
-                                                Director:
+                                                Format:
                                             </label>
                                             <span>
-                                                <a href="../../director/grace-belly/index.html">Grace
-                                                    Belly</a>, <a
-                                                    href="../../director/mae-west/index.html">Mae
-                                                    West</a> </span>
+                                                <a href="../../director/grace-belly/index.html">${view.movies.format_id}</a> </span>
                                         </li>
 
                                         <li>
                                             <label>
-                                                Genre:
+                                                Price:
                                             </label>
                                             <span>
-                                                <a href="../../genre/cartoon/index.html">Cartoon</a>, <a
-                                                    href="../../genre/comic/index.html">Comic</a>
+                                                <a href="../../genre/cartoon/index.html">${view.movies.price}</a>
                                             </span>
                                         </li>
 
-                                        <li>
-                                            <label>
-                                                Release:
-                                            </label>
-                                            <span>
-                                                February 15, 2022 </span>
-                                        </li>
+
 
                                         <li>
                                             <label>
-                                                Language:
+                                                Country:
                                             </label>
                                             <span>
-                                                English </span>
+                                                ${view.movies.country_id} </span>
                                         </li>
 
                                         <li>
@@ -128,27 +113,7 @@
 
                                 <div class="entry-content e-content" itemprop="description articleBody">
                                     <h3 class="info-name amy-title">Synopsis</h3>
-                                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                                        accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-                                        quae ab illo inventore veritatis et quasi architecto beatae
-                                        vitae dicta sunt explicabo.</p>
-                                    <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit
-                                        aut fugit, sed quia consequuntur magni dolores eos qui ratione
-                                        voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem
-                                        ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia
-                                        non numquam eius modi tempora incidunt ut labore et dolore
-                                        magnam aliquam quaerat voluptatem.</p>
-                                    <p>Ut enim ad minima veniam, quis nostrum exercitationem ullam
-                                        corporis suscipit laboriosam, nisi ut aliquid ex ea commodi
-                                        consequatur? Quis autem vel eum iure reprehenderit qui in ea
-                                        voluptate velit esse quam nihil molestiae consequatur, vel illum
-                                        qui dolorem eum fugiat quo voluptas nulla pariatur Lorem ipsum
-                                        dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                                        tempor incididunt ut labore et dolore magna aliqua.</p>
-                                    <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                                        laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                                        dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                                        fugiat nulla pariatur.</p>
+                                    <p>${view.movies.description}</p>
                                 </div>
                             </div>
                         </div>

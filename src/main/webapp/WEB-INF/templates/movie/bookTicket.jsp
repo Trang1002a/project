@@ -68,13 +68,13 @@
                                 <form:form action="book" modelAttribute="req" method="post">
                                     <div>
                                         <h3>Tên phim: <a href="">${view.name_movie}</a></h3>
-                                        <form:input path="movie" value="${view.name_movie}"/>
-                                        <form:input path="ticket_id" value="#${view.id}-${view.hour_id}"/>
-                                        <form:input path="room" value="${view.rooms_name}"/>
-                                        <form:input path="movie_day" value="${view.movie_day}"/>
-                                        <form:input path="branch" value="${view.branch_name}"/>
-                                        <form:input path="price" value="${view.price}"/>
-                                        <form:input path="hour_id" value="${view.hour_id}"/>
+                                        <form:input path="movie" type="hidden" value="${view.name_movie}"/>
+                                        <form:input path="ticket_id" type="hidden" value="#${view.id}-${view.hour_id}"/>
+                                        <form:input path="room" type="hidden" value="${view.rooms_name}"/>
+                                        <form:input path="movie_day" type="hidden" value="${view.movie_day}"/>
+                                        <form:input path="branch" type="hidden" value="${view.branch_name}"/>
+                                        <form:input path="price" type="hidden" value="${view.price}"/>
+                                        <form:input path="hour_id" type="hidden" value="${view.hour_id}"/>
 
                                         <p>Phòng chiếu: ${view.rooms_name} - ${view.total} ghế</p>
                                         <p>Suất chiếu: ${view.hour} - Ngày chiếu: ${view.movie_day}</p>
@@ -98,26 +98,42 @@
                                                     Ghế đã chọn
                                                 </label>
                                             </div>
+                                            <div>
+                                                <c:set var="index" scope="page" value="0"/>
+                                                <c:forEach var="r" items="${view.slot}">
+                                                    <c:if test="${index == 5}">
+                                                        <c:set var="index" scope="page" value="0"/><br/><br/>
+                                                    </c:if>
 
-                                            <c:forEach var="r" items="${view.slot}" varStatus="index">
-                                                <div>
-                                                    <label class="">
-                                                        <input type="checkbox" name="slot" class="checkbox"
-                                                               value="${r.key}" onchange="tick()"/>
-                                                    </label>
+                                                    <c:if test="${r.check == true}">
+                                                        <label class="mr-5">
+                                                            <input type="checkbox" name="checkbox"
+                                                                   class="checkboxRed" checked disabled/>${r.name}
+                                                        </label>
+                                                    </c:if>
+                                                    <c:if test="${r.check != true}">
+                                                        <label class="mr-5">
+                                                            <input type="checkbox" name="slot" class="checkbox"
+                                                                   value="${r.name}" onchange="tick()"/>${r.name}
+                                                        </label>
+                                                    </c:if>
+                                                    <c:set var="index" value="${index + 1}" scope="page"/>
+                                                </c:forEach>
+                                                <div class="form-group">
+                                                    <input id="content" type="text"
+                                                           name="phoneNumber" class="form-control" placeholder="Số điện thoại ...">
                                                 </div>
-                                                <c:if test="${index == col}"><br/></c:if>
-                                            </c:forEach>
+                                            </div>
 
-                                                <%--                                        <div>--%>
-                                                <%--                                            <label class="">--%>
-                                                <%--                                                <input type="checkbox" name="checkbox"/>--%>
-                                                <%--                                            </label>--%>
-                                                <%--                                            <label class="">--%>
-                                                <%--                                                <input type="checkbox" name="checkbox"--%>
-                                                <%--                                                       class="checkboxRed" checked disabled/>--%>
-                                                <%--                                            </label>--%>
-                                                <%--                                        </div>--%>
+<%--                                            <div>--%>
+<%--                                                <label class="">--%>
+<%--                                                    <input type="checkbox" name="checkbox"/>--%>
+<%--                                                </label>--%>
+<%--                                                <label class="">--%>
+<%--                                                    <input type="checkbox" name="checkbox"--%>
+<%--                                                           class="checkboxRed" checked disabled/>--%>
+<%--                                                </label>--%>
+<%--                                            </div>--%>
 
                                         </div>
                                         <div class="col-md-4">
@@ -134,6 +150,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <button type="submit" class="btn btn-success">Đặt vé</button>
                                 </form:form>
                             </div>

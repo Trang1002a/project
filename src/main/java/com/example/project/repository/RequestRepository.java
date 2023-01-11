@@ -20,4 +20,9 @@ public interface RequestRepository extends JpaRepository<Request, Integer> {
     @Modifying
     @Query("select r from Request r WHERE r.ticket_id = :ticket_id AND r.status = :status")
     List<Request> findAllByTicket_id(@Param("ticket_id") String ticket_id, @Param("status") boolean status);
+
+    @Transactional
+    @Modifying
+    @Query("select r from Request r WHERE r.id = :id AND r.phoneNumber = :phoneNumber")
+    List<Request> findByIdInAndPhoneNumberIn(@Param("id") Integer id, @Param("phoneNumber") String phoneNumber);
 }
