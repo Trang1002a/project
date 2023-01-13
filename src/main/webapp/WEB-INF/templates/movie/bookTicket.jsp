@@ -69,8 +69,6 @@
     <img src="<c:url value="/wp/wp-content/uploads/sites/2/2022/05/img_26.jpg" />" alt="Kubo and the Two Strings"/>
 </section>
 
-
-<button>Click me to hide paragraphs</button>
 <section class="main-content amy-movie single-movie layout-full has-banner">
     <div class="container">
         <div class="row">
@@ -106,7 +104,7 @@
                                                 Click tiếp vào ghế đã chọn để xoá lựa chọn</p>
                                             <p>
                                             <div class="checkbox">
-                                                <label class="">
+                                                <label class="mr-5">
                                                     <input type="checkbox" name="checkbox"
                                                            class="checkboxRed" checked disabled/>
                                                     Ghế đã đặt

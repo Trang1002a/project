@@ -14,17 +14,17 @@ CREATE TABLE tbl_movies
     country_id varchar(100),
     price varchar(100),
     performer varchar(100),
-    description varchar(255),
+    description Nvarchar(255),
     time varchar (5),
     status bit default(1),
     created_at datetime default CURRENT_TIMESTAMP
 )
     INSERT INTO tbl_movies(name, image, type_id, format_id, country_id, price, performer, description, time) VALUES
-('Kubo and the Two Strings', 'image1.jpg', '1', '1', '1', '123000', N'Comic, Magic', 'Mô tả', '60'),
-('The Hurricane Heist', 'image2.jpg', '2', '2', '2', '22000', N'Nguyễn Văn A', 'Mô tả', '60'),
-('Jumanji: Welcome to the Jungle', 'image3.jpg', '3', '1', '1', '511000', N'Cartoon, Sci-fi', 'Mô tả', '60'),
-('Death Wish', 'image4.jpg', '1', '2', '2', '66000', N'Nguyễn Văn A', 'Mô tả', '60'),
-('Supersonic', 'image5.jpg', '1', '1', '1', '50000', N'Cartoon, Magic', 'Mô tả', '60')
+('Kubo and the Two Strings', 'image1.jpg', '1', '1', '1', '123000', N'Comic, Magic', N'Mô tả', '60'),
+('The Hurricane Heist', 'image2.jpg', '2', '2', '2', '22000', N'Nguyễn Văn A', N'Mô tả', '60'),
+('Jumanji: Welcome to the Jungle', 'image3.jpg', '3', '1', '1', '511000', N'Cartoon, Sci-fi', N'Mô tả', '60'),
+('Death Wish', 'image4.jpg', '1', '2', '2', '66000', N'Nguyễn Văn A', N'Mô tả', '60'),
+('Supersonic', 'image5.jpg', '1', '1', '1', '50000', N'Cartoon, Magic', N'Mô tả', '60')
 CREATE TABLE tbl_type
 (
     id int identity primary key,
