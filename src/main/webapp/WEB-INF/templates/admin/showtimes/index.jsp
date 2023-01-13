@@ -123,7 +123,7 @@
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
                 <a type="button"
-                   href="${pageContext.request.contextPath}/admin/branch/delete?id=${v.id}"
+                   href="${pageContext.request.contextPath}/admin/showtimes/delete?id=${v.id}"
                    class="btn btn-danger">Xóa</a>
               </div>
             </div>
@@ -141,7 +141,7 @@
         <c:forEach begin="1" end="${Math.ceil(totalItems/page)}" var="i">
           <li class="page-item">
             <a class="page-link" id="${i}"
-               href="${pageContext.request.contextPath}/admin/type?<c:if test="${name != ''}">name=${name}&</c:if>page=${i}">${i}</a>
+               href="${pageContext.request.contextPath}/admin/showtimes?<c:if test="${name != ''}">name=${name}&</c:if>page=${i}">${i}</a>
           </li>
         </c:forEach>
       </ul>

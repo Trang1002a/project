@@ -34,6 +34,7 @@
             <tr>
                 <th>Id</th>
                 <th>Tên phòng</th>
+                <th>Mã Chi nhánh</th>
                 <th>Số hàng ghế</th>
                 <th>Số cột</th>
                 <th>Tổng số ghế</th>
@@ -46,6 +47,7 @@
                 <tr>
                     <td>${v.id}</td>
                     <td>${v.name}</td>
+                    <td>${v.branch_id}</td>
                     <td>${v.row}</td>
                     <td>${v.col}</td>
                     <td>${v.total}</td>
@@ -94,7 +96,7 @@
                 <c:forEach begin="1" end="${Math.ceil(totalItems/page)}" var="i">
                     <li class="page-item active">
                         <a class="page-link" id="${i}"
-                           href="${pageContext.request.contextPath}/admin/type?<c:if test="${name != ''}">name=${name}&</c:if>page=${i}">${i}</a>
+                           href="${pageContext.request.contextPath}/admin/room?<c:if test="${name != ''}">name=${name}&</c:if>page=${i}">${i}</a>
                     </li>
                 </c:forEach>
             </ul>

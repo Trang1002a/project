@@ -67,6 +67,40 @@ public class UserHomeServiceImpl implements UserHomeService {
     }
 
     @Override
+    public List<MoviesShowDTO> getHomeMovie(String name) {
+        List<MoviesShowDTO> list = new ArrayList<>();
+        List<MoviesIDAndDay> showtimes = showtimesRepository.findAllByStatus(true);
+        List<String> listIds = showtimes.stream().map((MoviesIDAndDay::getMovies_id)).collect(Collectors.toList());
+        List<Integer> intList = new ArrayList<>();
+        for (String s : listIds) intList.add(Integer.valueOf(s));
+        List<Movies> movies = new ArrayList<>();
+        if (StringUtils.isEmpty(name) || name == "") {
+            movies = moviesRepository.findAllByIdIn(intList);
+        } else {
+            movies = moviesRepository.findAllByIdInAndNameContaining(intList, name);
+        }
+        List<Movies> finalMovies = movies;
+        if (movies.size()>0){
+            showtimes.forEach(moviesIDAndDay -> {
+                MoviesShowDTO moviesShowDTO = new MoviesShowDTO();
+                Movies moviesName = finalMovies.stream().filter(m -> String.valueOf(m.getId()).equals(moviesIDAndDay.getMovies_id()))
+                        .findFirst().orElse(null);
+                if (Objects.nonNull(moviesName)){
+                    moviesShowDTO.setId(moviesName.getId());
+                    moviesShowDTO.setName(moviesName.getName());
+                    moviesShowDTO.setImage(moviesName.getImage());
+                    moviesShowDTO.setType(getType(moviesName.getType_id()));
+                    moviesShowDTO.setFormat(getFormat(moviesName.getFormat_id()));
+                    moviesShowDTO.setMovie_day(moviesIDAndDay.getMovie_day());
+                    moviesShowDTO.setTime(moviesName.getTime());
+                    list.add(moviesShowDTO);
+                }
+            });
+        }
+        return list;
+    }
+
+    @Override
     public MoviesDetailDTO getDetail(Integer id) {
         MoviesDetailDTO moviesDetailDTO = new MoviesDetailDTO();
         Movies movies = moviesRepository.findById(id).get();
@@ -124,15 +158,16 @@ public class UserHomeServiceImpl implements UserHomeService {
     public BookTicketDTO getBookTicket(Integer id, String hour) {
         BookTicketDTO bookTicketDTO = new BookTicketDTO();
         Showtimes showtimes = showtimesRepository.findById(id).get();
-        Map<String, String> priceMovie = getMovies(showtimes.getMovies_id());
+        MoviesDTO moviesDTO = getMovies(showtimes.getMovies_id());
         bookTicketDTO.setId(String.valueOf(id));
-        bookTicketDTO.setName_movie(priceMovie.get("movie"));
+        bookTicketDTO.setName_movie(moviesDTO.getName());
         bookTicketDTO.setBranch_name(getBranch(showtimes.getBranch_id()));
         Map<String, String> hourss = getHours(hour);
         bookTicketDTO.setHour(hourss.get("hour"));
         bookTicketDTO.setHour_id(hour);
         bookTicketDTO.setMovie_day(showtimes.getMovie_day());
-        bookTicketDTO.setPrice(priceMovie.get("price"));
+        bookTicketDTO.setPrice(moviesDTO.getPrice());
+        bookTicketDTO.setImage(moviesDTO.getImage());
         Room room = roomRepository.findByIdAndStatus(Integer.parseInt(showtimes.getRoom_id()), true);
         bookTicketDTO.setRooms_name(room.getName());
         List<SlotDTO> listSlot = new ArrayList<>();
@@ -202,27 +237,31 @@ public class UserHomeServiceImpl implements UserHomeService {
         return type_id;
     }
 
-    private Map<String, String> getMovies(String movies_id) {
+    private MoviesDTO getMovies(String movies_id) {
         if (movies_id != null){
             List<String> moviesId = Arrays.asList(movies_id.split(","));
             List<Movies> movies = moviesRepository.findAll();
             StringBuilder rt = new StringBuilder();
             List<String> prices = new ArrayList<>();
+            List<String> images = new ArrayList<>();
             movies.forEach(movie -> {
                 if(moviesId.contains(String.valueOf(movie.getId()))){
                     rt.append(movie.getName() + ", ");
                     String price = movie.getPrice();
+                    String image = movie.getImage();
                     prices.add(price);
+                    images.add(image);
                 }
             });
 
             String str = rt.toString();
-            Map<String, String> stringMap = new HashMap<>();
-            stringMap.put("price", prices.get(0));
-            stringMap.put("movie", str.substring(0, str.length() - 2));
-            return stringMap;
+            MoviesDTO moviesDTO = new MoviesDTO();
+            moviesDTO.setPrice(prices.get(0));
+            moviesDTO.setName(str.substring(0, str.length() - 2));
+            moviesDTO.setImage(images.get(0));
+            return moviesDTO;
         }
-        return new HashMap<>();
+        return new MoviesDTO();
     }
 
     private String getFormat(String format_id) {

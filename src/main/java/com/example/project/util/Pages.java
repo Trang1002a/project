@@ -41,7 +41,8 @@ public enum Pages {
     MOVIE_DETAIL("movie/detail"),
     MOVIE_SEARCH("movie/search"),
     MOVIE_BOOK_TICKET("movie/bookTicket"),
-    MOVIE_BOOK_SUCCESS("movie/bookSuccess");
+    MOVIE_BOOK_SUCCESS("movie/bookSuccess"),
+    ALL_MOVIE("movie/allMovie");
 
 
     private String uri;

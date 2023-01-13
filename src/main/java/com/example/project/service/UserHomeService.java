@@ -17,6 +17,7 @@ import java.util.Optional;
 @Service
 public interface UserHomeService {
     List<MoviesShowDTO> getHomeMovie();
+    List<MoviesShowDTO> getHomeMovie(String name);
     MoviesDetailDTO getDetail(Integer id);
     BookTicketDTO getBookTicket(Integer id, String hour);
     Request saveRequest(Request request);

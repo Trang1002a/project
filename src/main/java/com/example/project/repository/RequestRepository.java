@@ -25,4 +25,6 @@ public interface RequestRepository extends JpaRepository<Request, Integer> {
     @Modifying
     @Query("select r from Request r WHERE r.id = :id AND r.phoneNumber = :phoneNumber")
     List<Request> findByIdInAndPhoneNumberIn(@Param("id") Integer id, @Param("phoneNumber") String phoneNumber);
+
+    Page<Request> findByMovieContaining(String name, Pageable pageable);
 }

@@ -15,4 +15,6 @@ public interface MoviesRepository extends JpaRepository<Movies, Integer> {
     Page<Movies> findByNameContaining(String name, Pageable pageable);
 
     List<Movies> findAllByIdIn(List<Integer> ids);
+
+    List<Movies> findAllByIdInAndNameContaining(List<Integer> ids, String name);
 }

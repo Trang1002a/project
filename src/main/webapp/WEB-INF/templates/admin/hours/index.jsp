@@ -88,7 +88,7 @@
 				<c:forEach begin="1" end="${Math.ceil(totalItems/page)}" var="i">
 					<li class="page-item active">
 						<a class="page-link" id="${i}"
-						   href="${pageContext.request.contextPath}/admin/type?<c:if test="${name != ''}">name=${name}&</c:if>page=${i}">${i}</a>
+						   href="${pageContext.request.contextPath}/admin/hours?<c:if test="${name != ''}">name=${name}&</c:if>page=${i}">${i}</a>
 					</li>
 				</c:forEach>
 			</ul>

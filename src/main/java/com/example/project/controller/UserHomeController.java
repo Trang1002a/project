@@ -33,7 +33,7 @@ public class UserHomeController {
 
     @GetMapping(value = {"", "/index"})
     public String index(Model model) {
-        List<MoviesShowDTO> list =  userHomeService.getHomeMovie();
+        List<MoviesShowDTO> list =  userHomeService.getHomeMovie(null);
 //        List<Type> list = typeService.getList();
         model.addAttribute(Layout.VIEW, list);
         return Pages.USER_HOME_INDEX.uri();
@@ -69,5 +69,13 @@ public class UserHomeController {
         List<Request> list = userHomeService.search(phone_number, ticket_id);
         model.addAttribute(Layout.VIEW, list);
         return Pages.MOVIE_SEARCH.uri();
+    }
+
+    @GetMapping("/allMovie")
+    public String allMovie(Model model,
+                           @RequestParam(value = "name", required = false, defaultValue = "") String name) {
+        List<MoviesShowDTO> list =  userHomeService.getHomeMovie(name);
+        model.addAttribute(Layout.VIEW, list);
+        return Pages.ALL_MOVIE.uri();
     }
 }

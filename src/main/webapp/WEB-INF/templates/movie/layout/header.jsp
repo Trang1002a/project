@@ -499,62 +499,62 @@
                             <ul id="menu-mainnav" class="nav-menu">
                                 <li id="menu-item-121"
                                     class="menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-84 current_page_item menu-item-121">
-                                    <a href="index.html" aria-current="page">Home</a></li>
+                                    <a href="${pageContext.request.contextPath}/movie" aria-current="page">Home</a></li>
                                 <li id="menu-item-276"
                                     class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-276">
-                                    <a href="#">Movie</a>
-                                    <ul class="sub-menu">
-                                        <li id="menu-item-143"
-                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-143">
-                                            <a href="now-playing/index.html">Now Playing</a></li>
-                                        <li id="menu-item-134"
-                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-134">
-                                            <a href="coming-soon/index.html">Coming Soon</a></li>
-                                    </ul>
+                                    <a href="${pageContext.request.contextPath}/movie/allMovie">Movie</a>
+<%--                                    <ul class="sub-menu">--%>
+<%--                                        <li id="menu-item-143"--%>
+<%--                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-143">--%>
+<%--                                            <a href="now-playing/index.html">Now Playing</a></li>--%>
+<%--                                        <li id="menu-item-134"--%>
+<%--                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-134">--%>
+<%--                                            <a href="coming-soon/index.html">Coming Soon</a></li>--%>
+<%--                                    </ul>--%>
                                 </li>
                                 <li id="menu-item-277"
                                     class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-277">
                                     <a href="#">Single Movie</a>
-                                    <ul class="sub-menu">
-                                        <li id="menu-item-338"
-                                            class="menu-item menu-item-type-post_type menu-item-object-amy_movie menu-item-338">
-                                            <a href="movie/kubo-and-the-two-strings/index.html">Full Width &#038;
-                                                Banner</a></li>
-                                        <li id="menu-item-365"
-                                            class="menu-item menu-item-type-post_type menu-item-object-amy_movie menu-item-365">
-                                            <a href="movie/the-girl-with-all-the-gifts/index.html">Full Width &#038; No
-                                                Banner</a></li>
-                                        <li id="menu-item-340"
-                                            class="menu-item menu-item-type-post_type menu-item-object-amy_movie menu-item-340">
-                                            <a href="movie/jumanji-welcome-to-the-jungle/index.html">Sidebar &#038;
-                                                Banner</a></li>
-                                        <li id="menu-item-366"
-                                            class="menu-item menu-item-type-post_type menu-item-object-amy_movie menu-item-366">
-                                            <a href="movie/bad-moms/index.html">Sidebar &#038; No Banner</a></li>
-                                    </ul>
+<%--                                    <ul class="sub-menu">--%>
+<%--                                        <li id="menu-item-338"--%>
+<%--                                            class="menu-item menu-item-type-post_type menu-item-object-amy_movie menu-item-338">--%>
+<%--                                            <a href="movie/kubo-and-the-two-strings/index.html">Full Width &#038;--%>
+<%--                                                Banner</a></li>--%>
+<%--                                        <li id="menu-item-365"--%>
+<%--                                            class="menu-item menu-item-type-post_type menu-item-object-amy_movie menu-item-365">--%>
+<%--                                            <a href="movie/the-girl-with-all-the-gifts/index.html">Full Width &#038; No--%>
+<%--                                                Banner</a></li>--%>
+<%--                                        <li id="menu-item-340"--%>
+<%--                                            class="menu-item menu-item-type-post_type menu-item-object-amy_movie menu-item-340">--%>
+<%--                                            <a href="movie/jumanji-welcome-to-the-jungle/index.html">Sidebar &#038;--%>
+<%--                                                Banner</a></li>--%>
+<%--                                        <li id="menu-item-366"--%>
+<%--                                            class="menu-item menu-item-type-post_type menu-item-object-amy_movie menu-item-366">--%>
+<%--                                            <a href="movie/bad-moms/index.html">Sidebar &#038; No Banner</a></li>--%>
+<%--                                    </ul>--%>
                                 </li>
                                 <li id="menu-item-278"
                                     class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item-278">
                                     <a href="#">Showtime</a>
                                     <ul class="sub-menu">
-                                        <li id="menu-item-140"
-                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-140">
-                                            <a href="daily-showtime-layout-list/index.html">Daily Showtime Layout
-                                                List</a></li>
-                                        <li id="menu-item-137"
-                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-137">
-                                            <a href="daily-showtime-ajax/index.html">Daily Showtime Ajax</a></li>
-                                        <li id="menu-item-149"
-                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-149">
-                                            <a href="weekly-showtime-ajax/index.html">Weekly Showtime Ajax</a></li>
-                                        <li id="menu-item-152"
-                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-152">
-                                            <a href="weekly-showtime-table/index.html">Weekly Showtime Table</a></li>
+<%--                                        <li id="menu-item-140"--%>
+<%--                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-140">--%>
+<%--                                            <a href="daily-showtime-layout-list/index.html">Daily Showtime Layout--%>
+<%--                                                List</a></li>--%>
+<%--                                        <li id="menu-item-137"--%>
+<%--                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-137">--%>
+<%--                                            <a href="daily-showtime-ajax/index.html">Daily Showtime Ajax</a></li>--%>
+<%--                                        <li id="menu-item-149"--%>
+<%--                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-149">--%>
+<%--                                            <a href="weekly-showtime-ajax/index.html">Weekly Showtime Ajax</a></li>--%>
+<%--                                        <li id="menu-item-152"--%>
+<%--                                            class="menu-item menu-item-type-post_type menu-item-object-page menu-item-152">--%>
+<%--                                            <a href="weekly-showtime-table/index.html">Weekly Showtime Table</a></li>--%>
                                     </ul>
                                 </li>
                                 <li id="menu-item-146"
                                     class="menu-item menu-item-type-post_type menu-item-object-page menu-item-146"><a
-                                        href="top-rated/index.html">Top rated</a></li>
+                                        href="${pageContext.request.contextPath}/movie/search">Search</a></li>
                             </ul>
                         </div>
                     </nav>

@@ -33,6 +33,7 @@
 
                     <form:form action="insert" modelAttribute="view" method="post">
                         <form:input path="id" cssClass="form-control" type="hidden" value="${view.id}"/>
+                        <form:input path="branch_id" cssClass="form-control" type="hidden" value="${view.branch_id}"/>
                         <div class="form-group">
                             <label for="">Định dạng</label>
                             <form:input path="name" cssClass="form-control" value="${view.name}"/>

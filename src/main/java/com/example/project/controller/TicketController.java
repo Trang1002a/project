@@ -1,6 +1,8 @@
 package com.example.project.controller;
 
+import com.example.project.model.entity.Request;
 import com.example.project.model.entity.Ticket;
+import com.example.project.repository.RequestRepository;
 import com.example.project.service.Impl.TicketServiceImpl;
 import com.example.project.util.Layout;
 import com.example.project.util.Pages;
@@ -24,19 +26,22 @@ public class TicketController {
     @Autowired
     private TicketServiceImpl ticketService;
 
+    @Autowired
+    private RequestRepository requestRepository;
+
     @GetMapping(value = {"", "/index"})
     public String index(Model model,
                         @RequestParam(value = "page", required = false, defaultValue = "1") int page,
                         @RequestParam(value = "name", required = false, defaultValue = "") String name) {
         int size = 5;
         Pageable pageable = PageRequest.of(page-1, size);
-        Page<Ticket> page_;
+        Page<Request> page_;
         if(name == null){
-            page_ = ticketService.findAll(pageable);
+            page_ = requestRepository.findAll(pageable);
         } else {
-            page_ = ticketService.findByNameContaining(name, pageable);
+            page_ = requestRepository.findByMovieContaining(name, pageable);
         }
-        List<Ticket> list = page_.getContent();
+        List<Request> list = page_.getContent();
         model.addAttribute(Layout.VIEW, list);
         model.addAttribute(Layout.CURRENT_PAGE, page_.getNumber());
         model.addAttribute(Layout.TOTAL_ITEMS, page_.getTotalElements());

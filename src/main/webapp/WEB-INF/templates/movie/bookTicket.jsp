@@ -3,6 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ include file="layout/header.jsp" %>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <style type="text/css">
     input[type="checkbox"] {
         /* Add if not using autoprefixer */
@@ -47,10 +48,29 @@
         transform: scale(1);
     }
 </style>
+<script>
+    $(document).ready(function(){
+        dem = 0;
+        price = $("#price").val();
+        $(".checkbox").change(function() {
+            if(this.checked) {
+                dem++
+            } else {
+                dem--
+            }
+            total_price = dem * price;
+            $("#total_ticket").html(dem);
+            $("#total_price").html(total_price);
+
+        });
+    });
+</script>
 <section id="amy-page-header" class="amy-page-header">
     <img src="<c:url value="/wp/wp-content/uploads/sites/2/2022/05/img_26.jpg" />" alt="Kubo and the Two Strings"/>
 </section>
 
+
+<button>Click me to hide paragraphs</button>
 <section class="main-content amy-movie single-movie layout-full has-banner">
     <div class="container">
         <div class="row">
@@ -101,7 +121,7 @@
                                             <div>
                                                 <c:set var="index" scope="page" value="0"/>
                                                 <c:forEach var="r" items="${view.slot}">
-                                                    <c:if test="${index == 5}">
+                                                    <c:if test="${index == view.col}">
                                                         <c:set var="index" scope="page" value="0"/><br/><br/>
                                                     </c:if>
 
@@ -114,12 +134,12 @@
                                                     <c:if test="${r.check != true}">
                                                         <label class="mr-5">
                                                             <input type="checkbox" name="slot" class="checkbox"
-                                                                   value="${r.name}" onchange="tick()"/>${r.name}
+                                                                   value="${r.name}" id="${r.name}" />${r.name}
                                                         </label>
                                                     </c:if>
                                                     <c:set var="index" value="${index + 1}" scope="page"/>
                                                 </c:forEach>
-                                                <div class="form-group">
+                                                <div class="form-group w-80" >
                                                     <input id="content" type="text"
                                                            name="phoneNumber" class="form-control" placeholder="Số điện thoại ...">
                                                 </div>
@@ -138,14 +158,13 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="entry-item">
-                                                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg"
+                                                <img src="<c:url value="/static/images/${view.image}"/>"
                                                      alt="" width="200px">
-                                                <div>
-                                                    <p>Ghế chọn mua: B1</p>
-                                                    <p>Số lượng: 5</p>
+                                                <div class="mt-5">
+
+                                                    <p>Số lượng: <span id="total_ticket">0</span> vé</p>
                                                     <hr/>
-                                                    <p>Tổng tiền: 20000000đ</p>
-                                                    <a href="">Thanh toán</a>
+                                                    <p>Tổng tiền: <span id="total_price">0</span>đ</p>
                                                 </div>
                                             </div>
                                         </div>

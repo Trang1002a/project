@@ -20,6 +20,7 @@ public class BookTicketDTO {
     private String hour;
     private String hour_id;
     private String movie_day;
+    private String image;
     private String price;
     private String rooms_name;
     private List<SlotDTO> slot;
